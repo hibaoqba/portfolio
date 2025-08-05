@@ -1,0 +1,60 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Hiba Oqba",
+    "subtitle": "Software Engineer",
+    "cv": "Download my CV",
+    "cv-file":"assets/OqbaHiba_eng.pdf"
+  },
+  "about": {
+    "title": "About me",
+    "description": "Computer engineering graduate and current Master's student in Software Technologies at Sorbonne University. I design robust, well-structured, and user-focused applications. Passionate about software technologies, curious and detail-oriented, I strive to deliver high-quality and impactful work in every project."
+  },
+  "timeline": {
+  "title": "Academic Background",
+  "steps": [
+    {
+      "year": "2025 - 2026",
+      "title": "Master's Degree in Software Technologies",
+      "location": "Sorbonne University – Paris, France",
+      "logo": "/assets/logo_sorbonne.png"
+    },
+    {
+      "year": "2022 - 2025",
+      "title": "Computer Engineering Degree",
+      "location": "ENSA Agadir – Morocco",
+      "logo": "/assets/ENSA Maroc.svg"
+    },
+    {
+      "year": "2020 - 2022",
+      "title": "Integrated Preparatory Classes",
+      "location": "ENSA Agadir – Morocco",
+      "logo": "/assets/ENSA Maroc.svg"
+    }
+  ]
+},
+  "experience": {
+    "title": "Professional Experience",
+    "steps": [
+      {
+        "year": "2025",
+        "title": "Internship - Full Stack Engineer",
+        "location": "Ministry of Economy and Finance, Rabat – Morocco",
+        "logo": "/assets/Mef-maroc.png"
+      },
+      {
+        "year": "2024",
+        "title": "Internship - Web Development",
+        "location": "Metama-Agency, Agadir – Morocco",
+        "logo": "/assets/metama.png"
+      }
+    ]
+  }
+
+}

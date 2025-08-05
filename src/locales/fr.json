@@ -1,0 +1,63 @@
+{
+  "navbar": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "experience": "Expérience",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Hiba Oqba",
+    "subtitle": "Ingénieure Logiciel",
+    "cv": "Télécharger mon CV",
+    "cv-file": "assets/OqbaHiba_fr.pdf"
+  },
+  "about": {
+    "title": "À propos",
+ "description": "Ingénieure diplômée en informatique , actuellement étudiante en Master 2 Sciences et Technologies du Logiciel à Sorbonne Université. Je conçois des applications robustes, bien structurées et orientées utilisateur. Curieuse, rigoureuse et passionnée par les technologies du logiciel, je m’investis pleinement dans chaque projet pour allier performance, qualité et impact."  }
+,
+"timeline": {
+  "title": "Parcours académique",
+  "steps": [
+    {
+      "year": "2025 - 2026",
+      "title": "Master 2 Sciences et Technologies du Logiciel",
+      "location": "Sorbonne Université – Paris, France",
+      "logo": "/assets/logo_sorbonne.png"
+    },
+    {
+      "year": "2022 - 2025",
+      "title": "Diplôme d'ingénieur en Informatique - Mention très bien",
+      "location": "ENSA Agadir – Maroc",
+      "logo": "/assets/ENSA Maroc.svg"
+    },
+    {
+      "year": "2020 - 2022",
+      "title": "Classes préparatoires intégrées",
+      "location": "ENSA Agadir – Maroc",
+      "logo": "/assets/ENSA Maroc.svg"
+    }
+
+  ]
+},
+"experience": {
+  "title": "Expériences Professionnelles",
+  "steps": [
+    {
+      "year": "2025",
+      "title": "Stage - Ingénieure Full Stack ",
+      "location": "Ministère de l'Économie et des Finances, Rabat – Maroc",
+      "logo": "/assets/Mef-maroc.png"
+    },
+    {
+      "year": "2024",
+      "title": "Stage - Développement Web",
+      "location": "Metama-Agency, Agadir – Maroc",
+      "logo": "/assets/metama.png"
+    }
+  ]
+}
+
+
+
+}
