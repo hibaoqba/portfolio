@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Code, BadgeCheck, Layers } from "lucide-react";
-
+import Certifications from "./Certification";
+import TechStack from "./TechStack"; 
 function ShowcaseSection() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("projects");
@@ -54,10 +55,10 @@ function ShowcaseSection() {
           <div className="text-center text-gray-600 italic">[ Tes projets ici ]</div>
         )}
         {activeTab === "certifications" && (
-          <div className="text-center text-gray-600 italic">[ Tes certifications ici ]</div>
+          <Certifications />
         )}
         {activeTab === "stacks" && (
-          <div className="text-center text-gray-600 italic">[ Ta stack technique ici ]</div>
+          <TechStack />
         )}
       </div>
     </section>
