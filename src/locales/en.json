@@ -14,7 +14,7 @@
   },
   "about": {
     "title": "About me",
-    "description": "Computer engineering graduate and current Master's student in Software Technologies at Sorbonne University. I design robust, well-structured, and user-focused applications. Passionate about software technologies, curious and detail-oriented, I strive to deliver high-quality and impactful work in every project."
+    "description": "Software engineering graduate and current Master's student in Software Technologies at Sorbonne University. I design robust, well-structured, and user-focused applications. Passionate about software technologies, curious and detail-oriented, I strive to deliver high-quality and impactful work in every project."
   },
   "timeline": {
   "title": "Academic Background",
@@ -27,7 +27,7 @@
     },
     {
       "year": "2022 - 2025",
-      "title": "Computer Engineering Degree",
+      "title": "Software Engineering Degree",
       "location": "ENSA Agadir – Morocco",
       "logo": "/assets/ENSA Maroc.svg"
     },
@@ -117,6 +117,46 @@
     "projects": "Projects",
     "certifications": "Certifications",
     "stacks": "Stacks"
+  }
+},
+"projects": {
+  "loiCadre": {
+    "title": "Budget Law",
+    "description": "Internal application developed at the ministry in Rabat for managing budgets of public institutions."
+  },
+  
+  
+  "expenseTracker": {
+    "title": "Expense Tracker",
+    "description": "Modern budgeting app that lets users track their monthly expenses, visualize financial trends, and monitor progress through responsive dashboards and charts."
+  },
+  "bookingApp": {
+    "title": "Booking System",
+    "description": "Full-stack application for managing bookings and availability, with secure user authentication, reservation management, and real-time availability tracking."
+  },
+   "fleetApp": {
+    "title": "Fleet Management System",
+    "description": "Backend application for managing a vehicle fleet, including trip planning, automated assignments of vehicles and drivers, and real-time expense tracking."
+  }
+}
+,
+"contact": {
+  "title": "Contact",
+  "emailTo": "oqbahiba@gmail.com",
+  "location": "Paris, France",
+  "subject": "Portfolio contact – {{name}}",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/hiba-oqba-486a0221a/",
+    "github": "https://github.com/hibaoqba"
+  },
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "namePh": "Your name",
+    "emailPh": "you@email.com",
+    "messagePh": "Your message...",
+    "send": "Send"
   }
 }
 

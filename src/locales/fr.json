@@ -119,6 +119,44 @@
     "certifications": "Certifications",
     "stacks": "Stacks"
   }
+},
+"projects": {
+  "loiCadre": {
+    "title": "Loi Cadre Budgétaire",
+    "description": "Application interne développée au sein du ministère à Rabat pour la gestion des budgets des établissements publics."
+  },
+  "expenseTracker": {
+    "title": "Expense Tracker",
+    "description": "Application moderne de gestion budgétaire permettant aux utilisateurs de suivre leurs dépenses mensuelles, visualiser les tendances financières et surveiller leur progression via des dashboards réactifs et des graphiques."
+  },
+   "bookingApp": {
+    "title": "Système de Réservation",
+    "description": "Application full-stack de gestion des réservations et des disponibilités, avec authentification sécurisée, gestion des réservations et suivi en temps réel des créneaux."
+  },
+  "fleetApp": {
+    "title": "Système de Gestion de Parc Automobile",
+    "description": "Application backend pour la gestion d’un parc automobile : planification des voyages, affectation automatique des véhicules et des conducteurs, suivi des dépenses en temps réel."
+  }
+}
+,
+"contact": {
+  "title": "Contact",
+  "emailTo": "oqbahiba@gmail.com",
+  "location": "Paris, France",
+  "subject": "Contact via portfolio – {{name}}",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/hiba-oqba-486a0221a/",
+    "github": "https://github.com/hibaoqba"
+  },
+  "form": {
+    "name": "Nom",
+    "email": "Email",
+    "message": "Message",
+    "namePh": "Votre nom",
+    "emailPh": "votre@email.com",
+    "messagePh": "Votre message...",
+    "send": "Envoyer"
+  }
 }
 
 
