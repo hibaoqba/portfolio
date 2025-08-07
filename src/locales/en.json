@@ -40,21 +40,86 @@
   ]
 },
   "experience": {
-    "title": "Professional Experience",
-    "steps": [
-      {
-        "year": "2025",
-        "title": "Internship - Full Stack Engineer",
-        "location": "Ministry of Economy and Finance, Rabat – Morocco",
-        "logo": "/assets/Mef-maroc.png"
-      },
-      {
-        "year": "2024",
-        "title": "Internship - Web Development",
-        "location": "Metama-Agency, Agadir – Morocco",
-        "logo": "/assets/metama.png"
-      }
-    ]
+  "title": "Professional Experience",
+  "steps": [
+    {
+      "year": "2025",
+      "title": "Internship - Full Stack Engineer",
+      "location": "Ministry of Economy and Finance, Rabat – Morocco",
+      "description": "Designed and developed a management system for budget framework laws of public institutions. The project digitized the entire workflow of creating, validating, and tracking sector-specific budget positions.",
+      "highlights": [
+        "MVC architecture using ASP.NET Core and Angular",
+        "RESTful services with EF Core and SQL Server",
+        "JWT-based authentication and role management",
+        "Automated unit tests with NUnit (coverage >85%)",
+        "Excel report generation for sector managers",
+        "Agile management with Jira",
+        "Improved traceability of law versions (+80%)"
+      ],
+      "skills": [
+        "ASP.NET Core", "Entity Framework", "Angular", "Tailwind CSS",
+        "SQL Server", "JWT", "NUnit", "Git", "Jira"
+      ],
+      "impact": "Conducted in a demanding institutional setting, the internship enhanced my ability to deliver robust, secure, and tested solutions tailored to the public sector."
+    },
+    {
+      "year": "2024",
+      "title": "Internship - Web Development",
+      "location": "Metama-Agency, Agadir – Morocco",
+      "description": "Developed a complete online booking application with a responsive interface and secure backend. The app was deployed locally with production configuration.",
+      "highlights": [
+        "Frontend built with React and Bootstrap",
+        "Backend with Spring Boot and validation layers",
+        "JWT-based authentication",
+        "UI testing with JUnit and Selenium",
+        "MySQL database using JPA/Hibernate",
+        "Version control with Git",
+        "Local deployment with Spring Security configuration"
+      ],
+      "skills": [
+        "Java", "Spring Boot", "React", "Bootstrap", "MySQL",
+        "JWT", "JUnit", "Selenium", "Git", "Spring Security", "JPA/Hibernate"
+      ],
+      "impact": "This internship solidified my full stack skills in an agile environment, delivering a complete and secure application using modern development practices."
+    }
+  ]
+}
+,
+  "skillsTitle": "Skills",
+"skillCategories": {
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "database": "Database",
+  "tools": "DevOps & Tools"
+},
+"skills": {
+  "frontend": [
+    { "name": "React" },
+    { "name": "Angular" },
+    { "name": "Tailwind CSS" }
+  ],
+  "backend": [
+    { "name": ".NET Core" },
+    { "name": "Node.js" }
+  ],
+  "database": [
+    { "name": "MySQL" },
+    { "name": "PostgreSQL" }
+  ],
+  "tools": [
+    { "name": "Docker" },
+    { "name": "Git" }
+  ]
+},
+"portfolio": {
+  "title": "Portfolio",
+  "tabs": {
+    "projects": "Projects",
+    "certifications": "Certifications",
+    "stacks": "Stacks"
   }
+}
+
+
 
 }

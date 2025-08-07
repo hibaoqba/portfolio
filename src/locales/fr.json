@@ -45,18 +45,83 @@
   "steps": [
     {
       "year": "2025",
-      "title": "Stage - Ingénieure Full Stack ",
+      "title": "Stage - Ingénieure Full Stack",
       "location": "Ministère de l'Économie et des Finances, Rabat – Maroc",
-      "logo": "/assets/Mef-maroc.png"
+      "description": "Conception et développement d’un système de gestion des lois cadres budgétaires pour les établissements publics subventionnés. Le projet a permis de digitaliser l’ensemble du cycle de création, validation et suivi des postes budgétaires sectoriels.",
+      "highlights": [
+        "Architecture MVC avec ASP.NET Core et Angular",
+        "Services RESTful avec EF Core et SQL Server",
+        "Authentification avec JWT et gestion des rôles",
+        "Tests automatisés avec NUnit (couverture >85%)",
+        "Génération de rapports Excel pour les responsables",
+        "Gestion Agile avec Jira",
+        "Amélioration de la traçabilité des lois cadres (+80%)"
+      ],
+      "skills": [
+        "ASP.NET Core", "Entity Framework", "Angular", "Tailwind CSS",
+        "SQL Server", "JWT", "NUnit", "Git", "Jira"
+      ],
+      "impact": "Stage réalisé dans un cadre institutionnel exigeant, renforçant ma capacité à livrer des solutions robustes, sécurisées et testées, répondant aux besoins du secteur public."
     },
     {
       "year": "2024",
       "title": "Stage - Développement Web",
       "location": "Metama-Agency, Agadir – Maroc",
-      "logo": "/assets/metama.png"
+      "description": "Développement complet d’une application de réservation en ligne, avec une interface responsive et un backend sécurisé. L’application a été déployée localement avec configuration de production.",
+      "highlights": [
+        "Frontend avec React et Bootstrap",
+        "Backend Spring Boot sécurisé avec validation",
+        "JWT pour l’authentification",
+        "Tests avec JUnit et Selenium (UI)",
+        "Base de données MySQL via JPA/Hibernate",
+        "Contrôle de version avec Git",
+        "Déploiement local avec Spring Security configuré"
+      ],
+      "skills": [
+        "Java", "Spring Boot", "React", "Bootstrap", "MySQL",
+        "JWT", "JUnit", "Selenium", "Git", "Spring Security", "JPA/Hibernate"
+      ],
+      "impact": "Ce stage m’a permis de renforcer mes compétences full stack dans un cadre agile, en livrant une application complète et sécurisée avec des pratiques modernes de développement."
     }
   ]
 }
+,
+"skillsTitle": "Compétences",
+"skillCategories": {
+  "frontend": "Frontend",
+  "backend": "Backend",
+  "database": "Base de données",
+  "tools": "DevOps & Outils"
+},
+"skills": {
+  "frontend": [
+    { "name": "React" },
+    { "name": "Angular" },
+    { "name": "Tailwind CSS" }
+  ],
+  "backend": [
+    { "name": ".NET Core" },
+    { "name": "Node.js" }
+  ],
+  "database": [
+    { "name": "MySQL" },
+    { "name": "PostgreSQL" }
+  ],
+  "tools": [
+    { "name": "Docker" },
+    { "name": "Git" }
+  ]
+},
+"portfolio": {
+  "title": "Mes Réalisations",
+  "tabs": {
+    "projects": "Projets",
+    "certifications": "Certifications",
+    "stacks": "Stacks"
+  }
+}
+
+
 
 
 
