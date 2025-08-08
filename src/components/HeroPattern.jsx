@@ -87,8 +87,8 @@ export default function HeroPattern({ variant = "tri-classic" }) {
         </pattern>
 
         <linearGradient id="aDark" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="0" y2="100%" gradientTransform="rotate(240)">
-          <stop offset="0" stopColor="#070F2B" />
-          <stop offset="1" stopColor="#1B1A55" />
+          <stop offset="0" stopColor="#07082fff" />
+          <stop offset="1" stopColor="#161855ff" />
         </linearGradient>
 
         <pattern id="bDark" patternUnits="userSpaceOnUse" width="540" height="450" x="0" y="0" viewBox="0 0 1080 900">
@@ -96,29 +96,28 @@ export default function HeroPattern({ variant = "tri-classic" }) {
             <polygon fill="#535C91" points="90 150 0 300 180 300" />
             <polygon fill="#1f1e35ff" points="90 150 180 0 0 0" />
             <polygon fill="#9290C3" points="270 150 360 0 180 0" />
-            <polygon fill="#6A00F4" points="450 150 360 300 540 300" />
             <polygon fill="#535C91" points="450 150 540 0 360 0" />
-            <polygon fill="#1B1A55" points="630 150 540 300 720 300" />
+            <polygon fill="#2d1a55ff" points="630 150 540 300 720 300" />
             <polygon fill="#9290C3" points="630 150 720 0 540 0" />
             <polygon fill="#240053ff" points="810 150 720 300 900 300" />
             <polygon fill="#9290C3" points="810 150 900 0 720 0" />
             <polygon fill="#535C91" points="990 150 900 300 1080 300" />
-            <polygon fill="#1B1A55" points="990 150 1080 0 900 0" />
+            <polygon fill="#3e1466ff" points="990 150 1080 0 900 0" />
             <polygon fill="#9290C3" points="90 450 0 600 180 600" />
-            <polygon fill="#1B1A55" points="90 450 180 300 0 300" />
+            <polygon fill="#331a55ff" points="90 450 180 300 0 300" />
             <polygon fill="#535C91" points="270 450 180 600 360 600" />
             <polygon fill="#9290C3" points="270 450 360 300 180 300" />
-            <polygon fill="#6A00F4" points="450 450 360 600 540 600" />
+            <polygon fill="#541b9eff" points="450 450 360 600 540 600" />
             <polygon fill="#535C91" points="450 450 540 300 360 300" />
             <polygon fill="#535C91" points="630 450 540 600 720 600" />
             <polygon fill="#9290C3" points="630 450 720 300 540 300" />
             <polygon fill="#1B1A55" points="810 450 720 600 900 600" />
-            <polygon fill="#6A00F4" points="810 450 900 300 720 300" />
+            <polygon fill="#2f006cff" points="810 450 900 300 720 300" />
             <polygon fill="#9290C3" points="990 450 900 600 1080 600" />
-            <polygon fill="#1B1A55" points="990 450 1080 300 900 300" />
+            <polygon fill="#0a0955ff" points="990 450 1080 300 900 300" />
             <polygon fill="#070F2B" points="90 750 0 900 180 900" />
             <polygon fill="#1B1A55" points="270 750 180 900 360 900" />
-            <polygon fill="#6A00F4" points="270 750 360 600 180 600" />
+            <polygon fill="#390282ff" points="270 750 360 600 180 600" />
             <polygon fill="#1B1A55" points="450 750 540 600 360 600" />
             <polygon fill="#070F2B" points="630 750 540 900 720 900" />
             <polygon fill="#535C91" points="630 750 720 600 540 600" />

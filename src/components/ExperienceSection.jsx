@@ -5,8 +5,11 @@ function ExperienceSection() {
   const steps = t("experience.steps", { returnObjects: true });
 
   return (
-    <section id="experience" className="py-20 px-6 md:px-20 bg-white">
-      <h2 className="text-3xl font-bold mb-16 text-center text-gray-900">
+    <section
+      id="experience"
+      className="py-20 px-6 md:px-20 bg-white dark:bg-transparent"
+    >
+      <h2 className="text-3xl font-bold mb-16 text-center text-gray-900 dark:text-white">
         {t("experience.title")}
       </h2>
 
@@ -14,22 +17,22 @@ function ExperienceSection() {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="p-6 border border-gray-200 bg-white rounded-xl shadow-sm hover:shadow-lg hover:shadow-purple-200/40 transition"
+            className="p-6 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl shadow-sm hover:shadow-md dark:hover:shadow-black/20 transition"
           >
-            <div className="mb-2 text-sm text-gray-500">
+            <div className="mb-2 text-sm text-gray-500 dark:text-gray-300">
               {step.year} — {step.location}
             </div>
-            <h3 className="text-lg font-semibold text-black-700 mb-2">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
               {step.title}
             </h3>
-            <p className="text-gray-700 text-sm mb-4">
+            <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
               {step.description}
             </p>
             <div className="flex flex-wrap gap-2">
               {step.skills?.map((skill, i) => (
                 <span
                   key={i}
-                  className="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full"
+                  className="bg-purple-100 text-purple-800 dark:bg-purple-400/20 dark:text-purple-100 dark:border dark:border-purple-300/30 text-xs font-medium px-3 py-1 rounded-full"
                 >
                   {skill}
                 </span>

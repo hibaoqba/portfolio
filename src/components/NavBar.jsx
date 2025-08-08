@@ -11,8 +11,8 @@ function NavItem({ to, children, isActive }) {
       smooth
       to={to}
       className="group relative px-2 py-1 font-medium
-                 text-brand-700 hover:text-brand-900
-                 dark:text-brand-400 dark:hover:text-white
+                 text-brand-900 hover:text-brand-900
+                 dark:text-brand-600 dark:hover:text-white
                  rounded focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-brand-400
                  transition-colors"
@@ -21,7 +21,7 @@ function NavItem({ to, children, isActive }) {
       <span>{children}</span>
       <span
         className={`pointer-events-none absolute left-2 right-2 -bottom-0.5 h-0.5
-                    origin-left bg-brand-700 dark:bg-brand-400
+                    origin-left bg-brand-300 dark:bg-brand-400
                     transition-transform duration-300
                     ${isActive ? "scale-x-100" : "scale-x-0"} group-hover:scale-x-100`}
       />

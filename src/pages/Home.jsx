@@ -11,15 +11,20 @@ function Home() {
   return (
     <>
       <Hero />
-      <About id="about"/>
-      <SkillsSection />
-      <TimelineSection />
-      <ExperienceSection />
-      <ShowcaseSection />
-      <ContactSection />
-      <Footer/>
+
+      <div className="dark:bg-gradient-to-b dark:from-[#070F2B] dark:to-[#1B1A55]">
+        <About id="about" />
+        <SkillsSection />
+        <TimelineSection />
+        <ExperienceSection />
+        <ShowcaseSection />
+        <ContactSection />
+        <Footer />
+      </div>
+
       <ThemeToggle />
     </>
   );
 }
+
 export default Home;

@@ -30,7 +30,7 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 md:px-20 bg-gray-50">
+    <section id="contact" className="py-20 px-6 md:px-20 ">
       <h2 className="text-3xl font-bold mb-12 text-center text-gray-900">{t("contact.title")}</h2>
       <form onSubmit={onSubmit} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
         <div className="mb-4">
