@@ -6,6 +6,7 @@ import SkillsSection from '../components/SkillsSections';
 import ShowcaseSection from '../components/ShowcaseSection';
 import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
+import ThemeToggle from '../components/ThemeToggle';
 function Home() {
   return (
     <>
@@ -17,6 +18,7 @@ function Home() {
       <ShowcaseSection />
       <ContactSection />
       <Footer/>
+      <ThemeToggle />
     </>
   );
 }
