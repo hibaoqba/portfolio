@@ -24,7 +24,6 @@ function ShowcaseSection() {
         {t("portfolio.title")}
       </h2>
 
-      {/* Tabs */}
       <div className="flex justify-center flex-wrap gap-4 mb-10">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -47,7 +46,6 @@ function ShowcaseSection() {
         })}
       </div>
 
-      {/* Content area */}
       <div className="transition-all duration-300">
         {activeTab === "projects" && <Projects />}
         {activeTab === "certifications" && <Certifications />}

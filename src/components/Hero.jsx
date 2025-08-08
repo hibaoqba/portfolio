@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import HeroPattern from "./HeroPattern"; 
-import ScrollIndicator from "./ScrollIndicator"; // Importing ScrollIndicator component
+import ScrollIndicator from "./ScrollIndicator"; 
 function Hero() {
   const { t } = useTranslation();
   return (

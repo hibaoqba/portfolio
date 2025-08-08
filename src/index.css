@@ -4,3 +4,38 @@
 .tech-tag {
   @apply bg-gray-100 text-gray-800 px-2 py-1 rounded text-sm;
 }
+
+.theme-switching body,
+.theme-switching #root,
+.theme-switching main,
+.theme-switching section,
+.theme-switching nav,
+.theme-switching header,
+.theme-switching footer,
+.theme-switching .card,
+.theme-switching input,
+.theme-switching textarea,
+.theme-switching button {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    outline-color 180ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switching body,
+  .theme-switching #root,
+  .theme-switching main,
+  .theme-switching section,
+  .theme-switching nav,
+  .theme-switching header,
+  .theme-switching footer,
+  .theme-switching .card,
+  .theme-switching input,
+  .theme-switching textarea,
+  .theme-switching button {
+    transition: none !important;
+  }
+}
+

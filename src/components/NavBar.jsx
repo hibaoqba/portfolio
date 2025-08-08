@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
@@ -32,7 +32,40 @@ function NavItem({ to, children, isActive }) {
 function NavBar() {
   const { t, i18n } = useTranslation();
   const { hash, pathname } = useLocation();
-  const activeHash = pathname === "/" ? (hash || "#home") : hash;
+
+  const sectionIds = ["home", "about", "experience", "showcase", "contact"];
+
+  const [activeSection, setActiveSection] = useState("#home");
+
+  useEffect(() => {
+    const initial = pathname === "/" ? (hash || "#home") : (hash || "#home");
+    setActiveSection(initial);
+  }, [hash, pathname]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) {
+          setActiveSection(`#${visible.target.id}`);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    const els = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []); 
 
   const toggleLang = () => {
     i18n.changeLanguage(i18n.language === "fr" ? "en" : "fr");
@@ -60,18 +93,15 @@ function NavBar() {
           </span>
         </a>
 
-        {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-6">
-          <NavItem to="/#home"       isActive={activeHash === "#home"}>{t("navbar.home")}</NavItem>
-          <NavItem to="/#about"      isActive={activeHash === "#about"}>{t("navbar.about")}</NavItem>
-          <NavItem to="/#experience" isActive={activeHash === "#experience"}>{t("navbar.experience")}</NavItem>
-          <NavItem to="/#showcase"   isActive={activeHash === "#showcase"}>{t("navbar.projects")}</NavItem>
-          <NavItem to="/#contact"    isActive={activeHash === "#contact"}>{t("navbar.contact")}</NavItem>
+          <NavItem to="/#home"       isActive={activeSection === "#home"}>{t("navbar.home")}</NavItem>
+          <NavItem to="/#about"      isActive={activeSection === "#about"}>{t("navbar.about")}</NavItem>
+          <NavItem to="/#experience" isActive={activeSection === "#experience"}>{t("navbar.experience")}</NavItem>
+          <NavItem to="/#showcase"   isActive={activeSection === "#showcase"}>{t("navbar.projects")}</NavItem>
+          <NavItem to="/#contact"    isActive={activeSection === "#contact"}>{t("navbar.contact")}</NavItem>
         </div>
 
-        {/* Right actions */}
         <div className="flex items-center gap-3">
-          {/* Language toggle */}
           <button
             onClick={toggleLang}
             title="Switch language"
@@ -81,7 +111,6 @@ function NavBar() {
                        transition"
             aria-label="Toggle language"
           >
-            {/* Sliding thumb */}
             <span
               className={`absolute top-1 left-1 w-8 h-6 rounded-full shadow z-10
                           flex items-center justify-center text-xs font-bold
@@ -93,24 +122,14 @@ function NavBar() {
               {i18n.language === "fr" ? "FR" : "EN"}
             </span>
 
-            {/* Flags */}
-            <span
-              className={`absolute left-2 flex items-center transition-opacity
-                          ${i18n.language === "fr" ? "opacity-100" : "opacity-100"}`}
-              aria-hidden="true"
-            >
+            <span className="absolute left-2 flex items-center" aria-hidden="true">
               <ReactCountryFlag countryCode="FR" svg style={{ fontSize: "1rem" }} />
             </span>
-            <span
-              className={`absolute right-2 flex items-center transition-opacity
-                          ${i18n.language === "fr" ? "opacity-100" : "opacity-100"}`}
-              aria-hidden="true"
-            >
+            <span className="absolute right-2 flex items-center" aria-hidden="true">
               <ReactCountryFlag countryCode="GB" svg style={{ fontSize: "1rem" }} />
             </span>
           </button>
 
-          
         </div>
       </div>
     </nav>
