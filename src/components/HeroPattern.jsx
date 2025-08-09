@@ -52,7 +52,7 @@ export default function HeroPattern({ variant = "tri-classic" }) {
             <polygon points="900 0 810 150 990 150" />
             <polygon fill="#222" points="0 300 -90 450 90 450" />
             <polygon fill="#FFF" points="0 300 90 150 -90 150" />
-            <polygon fill="#FFF" points="180 300 90 450 270 450" />
+            <polygon fill="#f3f3f3ff" points="180 300 90 450 270 450" />
             <polygon fill="#666" points="180 300 270 150 90 150" />
             <polygon fill="#222" points="360 300 270 450 450 450" />
             <polygon fill="#FFF" points="360 300 450 150 270 150" />
@@ -60,7 +60,7 @@ export default function HeroPattern({ variant = "tri-classic" }) {
             <polygon fill="#222" points="540 300 630 150 450 150" />
             <polygon fill="#AAA" points="720 300 630 450 810 450" />
             <polygon fill="#666" points="720 300 810 150 630 150" />
-            <polygon fill="#FFF" points="900 300 810 450 990 450" />
+            <polygon fill="#eeeeeeff" points="900 300 810 450 990 450" />
             <polygon fill="#999" points="900 300 990 150 810 150" />
             <polygon points="0 600 -90 750 90 750" />
             <polygon fill="#666" points="0 600 90 450 -90 450" />
@@ -76,7 +76,7 @@ export default function HeroPattern({ variant = "tri-classic" }) {
             <polygon fill="#444" points="180 900 270 750 90 750" />
             <polygon fill="#FFF" points="360 900 450 750 270 750" />
             <polygon fill="#AAA" points="540 900 630 750 450 750" />
-            <polygon fill="#FFF" points="720 900 810 750 630 750" />
+            <polygon fill="#dededeff" points="720 900 810 750 630 750" />
             <polygon fill="#222" points="900 900 990 750 810 750" />
             <polygon fill="#222" points="1080 300 990 450 1170 450" />
             <polygon fill="#FFF" points="1080 300 1170 150 990 150" />

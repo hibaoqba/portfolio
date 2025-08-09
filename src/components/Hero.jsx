@@ -29,7 +29,6 @@ function Hero() {
 
       </div>
                <ScrollIndicator target="#showcase" />
-{/* Bottom fade overlay */}
 <div
   className="pointer-events-none absolute -bottom-[2px] -left-[2px] -right-[2px] h-44
              bg-gradient-to-b from-transparent

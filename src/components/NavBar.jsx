@@ -73,14 +73,15 @@ function NavBar() {
 
   return (
     <nav
-      className="fixed top-0 left-0 z-50 w-full
-                 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70
-                 border-b border-brand-50 shadow-sm
-                 dark:bg-brand-950/80 dark:supports-[backdrop-filter]:bg-brand-950/70
-                 dark:border-brand-900"
-      role="navigation"
-      aria-label="Main"
-    >
+  className="fixed top-0 left-0 z-50 w-full
+             bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80
+             border-b border-brand-50 shadow-sm
+             dark:bg-brand-950/80 dark:supports-[backdrop-filter]:bg-brand-950/70
+             dark:border-brand-900"
+  role="navigation"
+  aria-label="Main"
+>
+
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
         <a href="#home" className="flex items-center gap-2">
           <img
