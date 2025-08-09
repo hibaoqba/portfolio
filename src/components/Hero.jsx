@@ -8,7 +8,7 @@ function Hero() {
     
     <section
       id="home"
-      className="relative h-screen flex flex-col  items-center justify-center pt-16 overflow-hidden text-gray-900 dark:text-white"
+      className="relative h-screen flex flex-col dark:bg-[#070F2B] items-center justify-center pt-16 overflow-hidden text-gray-900 dark:text-white"
     >
 <HeroPattern variant="tri-classic" />
 

@@ -47,7 +47,7 @@
 
 .dark {
   --bg0: #070F2B; /* slightly darker top */
-  --bgMid: #0b163b; /* slightly darker mid */
+  --bgMid: #070F2B; /* slightly darker mid */
   --bg1: #1B1A55; /* slightly darker bottom */
   --glow: rgba(113, 92, 246, 0.22); /* glow still there but toned down */
 }
