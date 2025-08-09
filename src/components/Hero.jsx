@@ -5,6 +5,7 @@ import ScrollIndicator from "./ScrollIndicator";
 function Hero() {
   const { t } = useTranslation();
   return (
+    
     <section
       id="home"
       className="relative h-screen flex flex-col  items-center justify-center pt-16 overflow-hidden text-gray-900 dark:text-white"
@@ -28,6 +29,15 @@ function Hero() {
 
       </div>
                <ScrollIndicator target="#showcase" />
+{/* Bottom fade overlay */}
+<div
+  className="pointer-events-none absolute -bottom-[2px] -left-[2px] -right-[2px] h-44
+             bg-gradient-to-b from-transparent
+             to-[var(--bg0)] dark:to-[var(--bg0)]"
+  aria-hidden="true"
+/>
+
+
 
     </section>
   );

@@ -2,11 +2,12 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import React from "react";
 
 function ThemeToggle() {
-  const getInitialTheme = () => {
-    const stored = localStorage.getItem("theme");
-    if (stored) return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  };
+ const getInitialTheme = () => {
+  const stored = localStorage.getItem("theme");
+  if (stored) return stored;
+  return "dark"; 
+};
+
 
   const [theme, setTheme] = React.useState(getInitialTheme);
   const timeoutRef = React.useRef(null);

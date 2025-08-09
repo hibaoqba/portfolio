@@ -38,4 +38,50 @@
     transition: none !important;
   }
 }
+:root {
+  --bg0: #ffffff;
+  --bg1: #f8fafc;  /* slate-50-ish */
+  --glow: rgba(168, 85, 247, 0.18); /* violet-500 @ 18% */
+}
+
+
+.dark {
+  --bg0: #070F2B; /* slightly darker top */
+  --bgMid: #0b163b; /* slightly darker mid */
+  --bg1: #1B1A55; /* slightly darker bottom */
+  --glow: rgba(113, 92, 246, 0.22); /* glow still there but toned down */
+}
+
+.app-bg {
+  background:
+    radial-gradient(800px 400px at 80% -10%, var(--glow), transparent 70%),
+    radial-gradient(800px 400px at 10% 20%, var(--glow), transparent 65%),
+    linear-gradient(
+      160deg,
+      var(--bg0) 0%,
+      var(--bgMid) 45%,
+      var(--bg1) 100%
+    );
+  position: relative;
+}
+
+
+/* Subtle grain overlay (pointer-events none so it doesn't block) */
+.app-bg::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,\
+    <svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'>\
+      <filter id='n'>\
+        <feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/>\
+        <feColorMatrix type='saturate' values='0'/>\
+        <feComponentTransfer><feFuncA type='table' tableValues='0 1'/></feComponentTransfer>\
+      </filter>\
+      <rect width='100%' height='100%' filter='url(%23n)' opacity='0.7'/>\
+    </svg>");
+  mix-blend-mode: overlay;
+}
+
 
