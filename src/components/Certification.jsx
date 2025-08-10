@@ -23,27 +23,34 @@ const certifications = [
 
 const Certifications = () => {
   return (
-    <section
-      id="certifications"
-      className="py-20 px-6 md:px-20 bg-white dark:bg-transparent"
-    >
-     
-
-      <div className="space-y-6">
+    <section id="certifications" className="py-20 px-6 md:px-20 bg-white dark:bg-transparent">
+      <div className="flex flex-col gap-6">
         {certifications.map((cert, index) => (
           <a
             key={index}
             href={cert.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="block bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-6 py-4 shadow-md hover:shadow-lg hover:scale-[1.01] transition-all duration-300 flex items-center gap-6"
+            aria-label={cert.title}
+            className="group relative overflow-hidden rounded-2xl px-6 py-4 transition-all duration-300
+                       bg-white/60 backdrop-blur-md border border-transparent shadow-sm
+                       hover:shadow-[0_16px_48px_-20px_rgba(217,70,239,0.35)] hover:-translate-y-0.5
+                       focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/60
+                       dark:bg-[#0B0B14]/40 dark:backdrop-blur-md dark:border-fuchsia-400/10
+                       flex items-center gap-6"
           >
+            <span
+              aria-hidden="true"
+              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-fuchsia-500 via-violet-500/70 to-cyan-400"
+            />
+
             <img
               src={`/assets/${cert.file}`}
               alt={cert.title}
-              className="w-14 h-14 object-contain"
+              className="w-14 h-14 object-contain bg-white/70 dark:bg-white/10 rounded-lg p-2
+                         ring-1 ring-violet-200 dark:ring-white/15"
             />
-            <span className="text-gray-800 dark:text-gray-300 font-semibold text-base">
+            <span className="text-black dark:text-white font-semibold text-base">
               {cert.title}
             </span>
           </a>
