@@ -1,0 +1,7 @@
+https://www.hibaoqba.dev/*  https://hibaoqba.dev/:splat  301!
+/                           /fr/                          301!
+/fr                         /fr/                          301!
+/en                         /en/                          301!
+/fr/*                       /index.html                   200
+/en/*                       /index.html                   200
+/*                          /index.html                   200

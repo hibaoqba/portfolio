@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import ReactCountryFlag from "react-country-flag";
 import ThemeToggle from "./ThemeToggle";
@@ -32,13 +32,14 @@ function NavItem({ to, children, isActive }) {
 function NavBar() {
   const { t, i18n } = useTranslation();
   const { hash, pathname } = useLocation();
+  const navigate = useNavigate();
 
   const sectionIds = ["home", "about", "experience", "showcase", "contact"];
-
   const [activeSection, setActiveSection] = useState("#home");
+  const prefix = `/${i18n.language}`;
 
   useEffect(() => {
-    const initial = pathname === "/" ? (hash || "#home") : (hash || "#home");
+    const initial = hash || "#home";
     setActiveSection(initial);
   }, [hash, pathname]);
 
@@ -48,58 +49,44 @@ function NavBar() {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) {
-          setActiveSection(`#${visible.target.id}`);
-        }
+        if (visible?.target?.id) setActiveSection(`#${visible.target.id}`);
       },
-      {
-        root: null,
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-      }
+      { root: null, rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
     );
-
-    const els = sectionIds
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
+    const els = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []); 
+  }, []);
 
   const toggleLang = () => {
-    i18n.changeLanguage(i18n.language === "fr" ? "en" : "fr");
+    const newLang = i18n.language === "fr" ? "en" : "fr";
+    i18n.changeLanguage(newLang);
+    document.documentElement.lang = newLang;
+    navigate(`/${newLang}${hash || "#home"}`, { replace: true });
   };
 
   return (
     <nav
-  className="fixed top-0 left-0 z-50 w-full
-             bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80
-             border-b border-brand-50 shadow-sm
-             dark:bg-brand-950/80 dark:supports-[backdrop-filter]:bg-brand-950/70
-             dark:border-brand-900"
-  role="navigation"
-  aria-label="Main"
->
-
+      className="fixed top-0 left-0 z-50 w-full
+                 bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80
+                 border-b border-brand-50 shadow-sm
+                 dark:bg-brand-950/80 dark:supports-[backdrop-filter]:bg-brand-950/70
+                 dark:border-brand-900"
+      role="navigation"
+      aria-label="Main"
+    >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2">
-          <img
-            src="/hiba_logo.png"
-            alt="Hiba Oqba logo"
-            className="h-10 w-10 object-contain dark:brightness-95"
-          />
-          <span className="text-xl font-bold text-brand-950 dark:text-white">
-            Hiba Oqba
-          </span>
-        </a>
+        <HashLink smooth to={`${prefix}#home`} className="flex items-center gap-2">
+          <img src="/hiba_logo.png" alt="Hiba Oqba logo" className="h-10 w-10 object-contain dark:brightness-95" />
+          <span className="text-xl font-bold text-brand-950 dark:text-white">Hiba Oqba</span>
+        </HashLink>
 
         <div className="hidden md:flex items-center gap-6">
-          <NavItem to="/#home"       isActive={activeSection === "#home"}>{t("navbar.home")}</NavItem>
-          <NavItem to="/#about"      isActive={activeSection === "#about"}>{t("navbar.about")}</NavItem>
-          <NavItem to="/#experience" isActive={activeSection === "#experience"}>{t("navbar.experience")}</NavItem>
-          <NavItem to="/#showcase"   isActive={activeSection === "#showcase"}>{t("navbar.projects")}</NavItem>
-          <NavItem to="/#contact"    isActive={activeSection === "#contact"}>{t("navbar.contact")}</NavItem>
+          <NavItem to={`${prefix}#home`}       isActive={activeSection === "#home"}>{t("navbar.home")}</NavItem>
+          <NavItem to={`${prefix}#about`}      isActive={activeSection === "#about"}>{t("navbar.about")}</NavItem>
+          <NavItem to={`${prefix}#experience`} isActive={activeSection === "#experience"}>{t("navbar.experience")}</NavItem>
+          <NavItem to={`${prefix}#showcase`}   isActive={activeSection === "#showcase"}>{t("navbar.projects")}</NavItem>
+          <NavItem to={`${prefix}#contact`}    isActive={activeSection === "#contact"}>{t("navbar.contact")}</NavItem>
         </div>
 
         <div className="flex items-center gap-3">
@@ -122,7 +109,6 @@ function NavBar() {
             >
               {i18n.language === "fr" ? "FR" : "EN"}
             </span>
-
             <span className="absolute left-2 flex items-center" aria-hidden="true">
               <ReactCountryFlag countryCode="FR" svg style={{ fontSize: "1rem" }} />
             </span>
@@ -130,7 +116,6 @@ function NavBar() {
               <ReactCountryFlag countryCode="GB" svg style={{ fontSize: "1rem" }} />
             </span>
           </button>
-
         </div>
       </div>
     </nav>

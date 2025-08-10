@@ -1,23 +1,36 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useParams } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import About from './components/About';
 import Home from './pages/Home';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
+function RoutedHome() {
+  const { lng } = useParams();
+  const { i18n } = useTranslation();
 
-function App() {
-  return (
-    <Router>
-      <div className="font-sans">
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          
-        </Routes>
-      </div>
-    </Router>
-  );
+  const lang = lng === 'fr' || lng === 'en' ? lng : null;
+
+  useEffect(() => {
+    if (lang) {
+      i18n.changeLanguage(lang);
+      document.documentElement.lang = lang;
+    }
+  }, [lang]);
+
+  if (!lang) return <Navigate to="/fr" replace />;
+  return <Home />;
 }
 
-export default App;
+export default function App() {
+  return (
+    <div className="font-sans">
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Navigate to="/fr" replace />} />
+        <Route path="/:lng" element={<RoutedHome />} />
+        <Route path="*" element={<Navigate to="/fr" replace />} />
+      </Routes>
+    </div>
+  );
+}
