@@ -34,15 +34,15 @@ const techs = [
 ];
 
 const TechStack = () => {
-  // subtle reveal like other sections
   const REVEAL_EDGE_VH = 0.96;
   const STAGGER_MS = 40;
 
   const itemRefs = useRef([]);
-  const [revealed, setRevealed] = useState(() => Array(techs.length).fill(false));
+  const observerRef = useRef(null);
+  const [visible, setVisible] = useState(() => Array(techs.length).fill(false));
 
   useEffect(() => {
-    setRevealed(prev => {
+    setVisible(prev => {
       const next = Array(techs.length).fill(false);
       for (let i = 0; i < Math.min(prev.length, next.length); i++) next[i] = prev[i];
       return next;
@@ -51,37 +51,35 @@ const TechStack = () => {
   }, []);
 
   useEffect(() => {
-    let ticking = false;
-    const vh = () => window.innerHeight;
-
-    const update = () => {
-      ticking = false;
-      const next = itemRefs.current.map(el => {
-        if (!el) return false;
-        const r = el.getBoundingClientRect();
-        return r.top < vh() * REVEAL_EDGE_VH;
-      });
-      if (next.length !== revealed.length || next.some((v, i) => v !== revealed[i])) {
-        setRevealed(next);
-      }
+    const setup = () => {
+      if (observerRef.current) observerRef.current.disconnect();
+      const marginPx = Math.round(window.innerHeight * (1 - REVEAL_EDGE_VH));
+      observerRef.current = new IntersectionObserver(
+        entries => {
+          setVisible(prev => {
+            let changed = false;
+            const next = prev.slice();
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                const idx = Number(e.target.dataset.index);
+                if (!next[idx]) { next[idx] = true; changed = true; }
+                observerRef.current.unobserve(e.target);
+              }
+            }
+            return changed ? next : prev;
+          });
+        },
+        { root: null, rootMargin: `0px 0px -${marginPx}px 0px`, threshold: 0 }
+      );
+      itemRefs.current.forEach(el => el && observerRef.current.observe(el));
     };
-
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    };
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    setup();
+    window.addEventListener('resize', setup);
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('resize', setup);
+      if (observerRef.current) observerRef.current.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [REVEAL_EDGE_VH]);
+  }, []);
 
   return (
     <section id="stack" className="py-20 px-6 md:px-20 bg-white dark:bg-transparent">
@@ -90,29 +88,32 @@ const TechStack = () => {
           <div
             key={index}
             ref={el => (itemRefs.current[index] = el)}
-            className={`group relative w-full h-full max-w-[220px] rounded-2xl transition-all duration-500
-                        ${revealed[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
+            data-index={index}
+            className={`group relative w-full h-full max-w-[220px] rounded-2xl transition-[opacity,transform] duration-400 transform-gpu
+                        ${visible[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
                         motion-reduce:transition-none`}
-            style={{ transitionDelay: revealed[index] ? `${Math.min(index * STAGGER_MS, 260)}ms` : '0ms' }}
+            style={{ transitionDelay: visible[index] ? `${Math.min(index * STAGGER_MS, 260)}ms` : '0ms' }}
           >
             <div
               className="relative overflow-hidden rounded-2xl p-6 h-full flex flex-col items-center
-                         bg-white/60 dark:bg-[#0B0B14]/40 backdrop-blur-md border border-transparent shadow-sm
-                         hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                         bg-white/90 supports-[backdrop-filter]:bg-white/60 supports-[backdrop-filter]:backdrop-blur-md
+                         dark:bg-[#0B0B14]/40 dark:supports-[backdrop-filter]:backdrop-blur-md
+                         border border-transparent shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-transform duration-300 transform-gpu"
             >
-              {/* Sheen on hover (kept). Gradient accent line removed. */}
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute -left-1/3 top-0 h-full w-1/3 opacity-0
                            bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] blur-md
-                           transition-all duration-700 ease-out group-hover:opacity-100 group-hover:translate-x-[200%]"
+                           transition-transform duration-700 ease-out group-hover:opacity-100 group-hover:translate-x-[200%]"
               />
-
               <img
                 src={`/assets/${tech.file}`}
                 alt={tech.name}
-                className="w-14 h-14 object-contain mb-3 transition-transform duration-300 group-hover:scale-105"
+                width={56}
+                height={56}
                 loading="lazy"
+                decoding="async"
+                className="w-14 h-14 object-contain mb-3 transition-transform duration-300 group-hover:scale-105 transform-gpu"
               />
               <p className="text-black dark:text-white font-medium text-sm text-center">
                 {tech.name}

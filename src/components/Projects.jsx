@@ -40,14 +40,20 @@ function Projects() {
           to={`/#${proj.id}`}
           aria-label={proj.title}
           className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/70 rounded-2xl"
+          style={{ contentVisibility: 'auto' }}
         >
           <div
-            className="relative overflow-hidden rounded-2xl p-6 transition-all duration-300
-                       bg-white/60 backdrop-blur-md border border-transparent shadow-sm
-                       hover:shadow-[0_16px_48px_-20px_rgba(217,70,239,0.45)] hover:-translate-y-0.5
-                       dark:bg-[#0B0B14]/40 dark:backdrop-blur-md dark:border-fuchsia-400/10"
+            className="
+              relative overflow-hidden rounded-2xl p-6
+              transition-[transform,box-shadow] duration-200 ease-out transform-gpu
+              bg-white/90 supports-[backdrop-filter]:bg-white/70 md:supports-[backdrop-filter]:backdrop-blur-sm
+              border border-transparent shadow-sm hover:shadow-md hover:-translate-y-0.5
+              dark:bg-[#0B0B14]/40 md:dark:supports-[backdrop-filter]:backdrop-blur-sm dark:border-fuchsia-400/10
+              motion-reduce:transition-none motion-reduce:transform-none
+            "
+            style={{ contain: 'layout paint style' }}
           >
-            {/* Neon accent bar (not a frame) */}
+            {/* left neon accent (cheap) */}
             <span
               aria-hidden="true"
               className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-fuchsia-500 via-violet-500/70 to-cyan-400"
@@ -56,7 +62,7 @@ function Projects() {
             <h3 className="text-xl font-bold mb-2 text-black dark:text-white">
               {proj.title}
               <span
-                className="ml-2 inline-block translate-x-0 opacity-60 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100"
+                className="ml-2 inline-block translate-x-0 opacity-60 transition-[transform,opacity] duration-200 group-hover:translate-x-1 group-hover:opacity-100"
                 aria-hidden="true"
               >
                 →
@@ -69,9 +75,9 @@ function Projects() {
               {proj.techs.map((tech, idx) => (
                 <span
                   key={idx}
-                  className="text-xs font-medium px-3 py-1 rounded-full backdrop-blur-[2px]
-                             bg-white/60 text-violet-700 ring-1 ring-violet-200
-                             hover:bg-white/70 transition-colors
+                  className="text-xs font-medium px-3 py-1 rounded-full
+                             bg-white/80 text-violet-700 ring-1 ring-violet-200
+                             hover:bg-white transition-colors
                              dark:bg-white/10 dark:text-white dark:ring-white/15"
                 >
                   {tech}

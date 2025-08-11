@@ -122,12 +122,12 @@
 "projects": {
   "loiCadre": {
     "title": "Budget Law",
-    "description": "Internal application developed at the ministry in Rabat for managing budgets of public institutions."
+    "description": "Internal app developped at the Ministry of Economy and Finances that centralizes the framework law, tracks workforce movements, and auto-generates regulatory tables for public institutions."
   },
   
   
   "expenseTracker": {
-    "title": "Expense Tracker",
+    "title": "Budgify - Your expense tracker",
     "description": "Modern budgeting app that lets users track their monthly expenses, visualize financial trends, and monitor progress through responsive dashboards and charts."
   },
   "bookingApp": {

@@ -123,10 +123,10 @@
 "projects": {
   "loiCadre": {
     "title": "Loi Cadre Budgétaire",
-    "description": "Application interne développée au sein du ministère à Rabat pour la gestion des budgets des établissements publics."
+    "description": "Application interne développée au sein du Ministère de l'Économie et des Finances qui centralise la loi-cadre, suit les mouvements d’effectifs et génère automatiquement les tableaux réglementaires pour les établissements publics."
   },
   "expenseTracker": {
-    "title": "Expense Tracker",
+    "title": "Budgify - Votre suivi des dépenses",
     "description": "Application moderne de gestion budgétaire permettant aux utilisateurs de suivre leurs dépenses mensuelles, visualiser les tendances financières et surveiller leur progression via des dashboards réactifs et des graphiques."
   },
    "bookingApp": {
