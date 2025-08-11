@@ -32,12 +32,14 @@ const Certifications = () => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={cert.title}
-            className="group relative overflow-hidden rounded-2xl px-6 py-4 transition-all duration-300
-                       bg-white/60 backdrop-blur-md border border-transparent shadow-sm
-                       hover:shadow-[0_16px_48px_-20px_rgba(217,70,239,0.35)] hover:-translate-y-0.5
+            className="group relative overflow-hidden rounded-2xl px-6 py-4
+                       transition-[transform,box-shadow] duration-200 ease-out transform-gpu
+                       bg-white/90 supports-[backdrop-filter]:bg-white/70 md:supports-[backdrop-filter]:backdrop-blur-sm
+                       border border-transparent shadow-sm hover:shadow-md hover:-translate-y-0.5
                        focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/60
-                       dark:bg-[#0B0B14]/40 dark:backdrop-blur-md dark:border-fuchsia-400/10
+                       dark:bg-[#0B0B14]/40 md:dark:supports-[backdrop-filter]:backdrop-blur-sm dark:border-fuchsia-400/10
                        flex items-center gap-6"
+            style={{ contentVisibility: 'auto', contain: 'layout paint style' }}
           >
             <span
               aria-hidden="true"
@@ -47,6 +49,11 @@ const Certifications = () => {
             <img
               src={`/assets/${cert.file}`}
               alt={cert.title}
+              width={56}
+              height={56}
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
               className="w-14 h-14 object-contain bg-white/70 dark:bg-white/10 rounded-lg p-2
                          ring-1 ring-violet-200 dark:ring-white/15"
             />
