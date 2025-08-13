@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 const certifications = [
   {
     title: "IBM Back-End Development Professional Certificate",
@@ -21,50 +23,53 @@ const certifications = [
   },
 ];
 
-const Certifications = () => {
+const CertItem = memo(function CertItem({ cert }) {
   return (
-    <section id="certifications" className="py-20 px-6 md:px-20 bg-white dark:bg-transparent">
-      <div className="flex flex-col gap-6">
-        {certifications.map((cert, index) => (
-          <a
-            key={index}
-            href={cert.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={cert.title}
-            className="group relative overflow-hidden rounded-2xl px-6 py-4
-                       transition-[transform,box-shadow] duration-200 ease-out transform-gpu
-                       bg-white/90 supports-[backdrop-filter]:bg-white/70 md:supports-[backdrop-filter]:backdrop-blur-sm
-                       border border-transparent shadow-sm hover:shadow-md hover:-translate-y-0.5
-                       focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/60
-                       dark:bg-[#0B0B14]/40 md:dark:supports-[backdrop-filter]:backdrop-blur-sm dark:border-fuchsia-400/10
-                       flex items-center gap-6"
-            style={{ contentVisibility: 'auto', contain: 'layout paint style' }}
-          >
-            <span
-              aria-hidden="true"
-              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-fuchsia-500 via-violet-500/70 to-cyan-400"
-            />
+    <a
+      href={cert.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={cert.title}
+      className="group relative overflow-hidden rounded-2xl px-6 py-4
+                 bg-white dark:bg-[#0d1230]
+                 border border-black/5 dark:border-white/10
+                 shadow-sm hover:shadow-md transition-transform duration-150
+                 hover:-translate-y-0.5 focus:outline-none
+                 focus-visible:ring-2 focus-visible:ring-violet-400/60
+                 flex items-center gap-4"
+      style={{ contentVisibility: "auto", contain: "layout paint style" }}
+    >
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-0 bottom-0 w-[3px]
+                   bg-gradient-to-b from-violet-500 via-violet-500/70 to-fuchsia-500"
+      />
+      <img
+        src={`/assets/${cert.file}`}
+        alt={cert.title}
+        width={48}
+        height={48}
+        loading="lazy"
+        decoding="async"
+        className="w-12 h-12 object-contain rounded-lg"
+      />
+      <span className="text-slate-900 dark:text-white font-medium">
+        {cert.title}
+      </span>
+    </a>
+  );
+});
 
-            <img
-              src={`/assets/${cert.file}`}
-              alt={cert.title}
-              width={56}
-              height={56}
-              loading="lazy"
-              decoding="async"
-              fetchpriority="low"
-              className="w-14 h-14 object-contain bg-white/70 dark:bg-white/10 rounded-lg p-2
-                         ring-1 ring-violet-200 dark:ring-white/15"
-            />
-            <span className="text-black dark:text-white font-semibold text-base">
-              {cert.title}
-            </span>
-          </a>
+function Certifications() {
+  return (
+    <section id="certifications" className="py-20 px-6 md:px-20 bg-transparent">
+      <div className="flex flex-col gap-4">
+        {certifications.map((cert) => (
+          <CertItem key={cert.title} cert={cert} />
         ))}
       </div>
     </section>
   );
-};
+}
 
-export default Certifications;
+export default memo(Certifications);
