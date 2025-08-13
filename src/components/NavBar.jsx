@@ -39,24 +39,44 @@ function NavBar() {
   const prefix = `/${i18n.language}`;
 
   useEffect(() => {
-    const initial = hash || "#home";
-    setActiveSection(initial);
-  }, [hash, pathname]);
+  const initial = hash || "#home";
+  setActiveSection(initial);
+}, [hash, pathname, i18n.language]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
+    useEffect(() => {
+    let io = null;
+    let raf = null;
+
+    const setup = () => {
+      const els = sectionIds
+        .map(id => document.getElementById(id))
+        .filter(Boolean);
+
+      if (els.length === 0) {
+        raf = requestAnimationFrame(setup);
+        return;
+      }
+
+      io = new IntersectionObserver((entries) => {
         const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
         if (visible?.target?.id) setActiveSection(`#${visible.target.id}`);
-      },
-      { root: null, rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] }
-    );
-    const els = sectionIds.map((id) => document.getElementById(id)).filter(Boolean);
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+      }, { root: null, rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+
+      els.forEach(el => io.observe(el));
+
+      // Forcer un premier calcul après peinture (important quand on arrive via redirection)
+      requestAnimationFrame(() => window.dispatchEvent(new Event('scroll')));
+    };
+
+    setup();
+
+    return () => {
+      if (io) io.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [pathname, i18n.language]); 
 
   const toggleLang = () => {
     const newLang = i18n.language === "fr" ? "en" : "fr";
