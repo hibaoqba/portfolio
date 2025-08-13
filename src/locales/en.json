@@ -156,7 +156,9 @@
     "namePh": "Your name",
     "emailPh": "you@email.com",
     "messagePh": "Your message...",
-    "send": "Send"
+    "send": "Send",
+    "success": "Your message has been sent. I will contact you soon.",
+    "error": "Failed to send. Please try again later."
   }
 }
 

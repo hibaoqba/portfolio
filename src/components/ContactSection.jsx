@@ -122,13 +122,13 @@ function ContactSection() {
             {ok === true && (
               <div className="text-green-600 dark:text-green-400 text-sm">
                 <CheckCircle2 className="h-4 w-4 mb-1" />
-                <p>{t("contact.form.success", "Message envoyé.")}</p>
+                <p>{t("contact.form.success")}</p>
               </div>
             )}
             {ok === false && (
               <div className="text-red-600 dark:text-red-400 text-sm">
                 <AlertCircle className="h-4 w-4 mb-1" />
-                <p>{t("contact.form.error", "Échec de l’envoi. Réessaie.")}</p>
+                <p>{t("contact.form.error")}</p>
               </div>
             )}
           </div>

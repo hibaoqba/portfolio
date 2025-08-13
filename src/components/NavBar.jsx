@@ -39,9 +39,9 @@ function NavBar() {
   const prefix = `/${i18n.language}`;
 
   useEffect(() => {
-  const initial = hash || "#home";
-  setActiveSection(initial);
+  if (hash) setActiveSection(hash); 
 }, [hash, pathname, i18n.language]);
+
 
     useEffect(() => {
     let io = null;
@@ -66,7 +66,6 @@ function NavBar() {
 
       els.forEach(el => io.observe(el));
 
-      // Forcer un premier calcul après peinture (important quand on arrive via redirection)
       requestAnimationFrame(() => window.dispatchEvent(new Event('scroll')));
     };
 
@@ -79,11 +78,19 @@ function NavBar() {
   }, [pathname, i18n.language]); 
 
   const toggleLang = () => {
-    const newLang = i18n.language === "fr" ? "en" : "fr";
-    i18n.changeLanguage(newLang);
-    document.documentElement.lang = newLang;
-    navigate(`/${newLang}${hash || "#home"}`, { replace: true });
-  };
+  const newLang = i18n.language === "fr" ? "en" : "fr";
+  i18n.changeLanguage(newLang);
+  document.documentElement.lang = newLang;
+
+  const langRE = /^\/(fr|en)(?=\/|$)/;
+  const suffix = pathname.replace(langRE, ""); // keep any subpath
+  // preserve hash ONLY if it already exists
+  const target = `/${newLang}${suffix}${hash || ""}`;
+
+  navigate(target, { replace: true, preventScrollReset: true });
+};
+
+
 
   return (
     <nav
