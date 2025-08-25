@@ -1,5 +1,7 @@
 import { HashLink } from 'react-router-hash-link';
 import { useTranslation } from 'react-i18next';
+import { FiExternalLink } from "react-icons/fi";
+import { motion } from "framer-motion";
 
 function Projects() {
   const { t } = useTranslation();
@@ -32,57 +34,61 @@ function Projects() {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="grid gap-6 sm:grid-cols-2">
       {projectData.map((proj, index) => (
-        <HashLink
+        <motion.div
           key={index}
-          smooth
-          to={`/#${proj.id}`}
-          aria-label={proj.title}
-          className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/70 rounded-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: index * 0.1 }}
         >
-          <div
-            className="
-              relative overflow-hidden rounded-2xl p-5 md:p-6
-              bg-white dark:bg-[#0B0B14]/60
-              border border-gray-200/80 dark:border-white/10
-              transition-transform duration-150 transform-gpu will-change-transform
-              hover:-translate-y-0.5
-            "
+          <HashLink
+            smooth
+            to={`/#${proj.id}`}
+            aria-label={proj.title}
+            className="group block rounded-2xl h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/70"
           >
-            <span
-              aria-hidden="true"
-              className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-fuchsia-500 via-violet-500/70 to-cyan-400"
-            />
+            <div
+              className="
+                relative rounded-2xl p-5 md:p-6
+                bg-white/80 dark:bg-[#0B0B14]/40
+                border border-gray-200 dark:border-transparent
+                shadow-sm transition-all duration-300
+                hover:shadow-md hover:-translate-y-0.5
+                min-h-[260px] flex flex-col
+              "
+            >
+              <FiExternalLink
+                className="absolute top-5 right-5 opacity-50 group-hover:opacity-80 transition-opacity duration-200"
+                size={18}
+              />
 
-            <h3 className="text-lg md:text-xl font-semibold mb-1.5 text-black dark:text-white">
-              {proj.title}
-              <span
-                className="ml-2 inline-block translate-x-0 opacity-60 transition-transform duration-150 group-hover:translate-x-1"
-                aria-hidden="true"
-              >
-                →
-              </span>
-            </h3>
+              <h3 className="text-lg md:text-xl font-semibold mb-2 text-black dark:text-white pr-6">
+                {proj.title}
+              </h3>
 
-            <p className="text-sm md:text-[15px] leading-relaxed text-gray-700 dark:text-gray-300 mb-3">
-              {proj.desc}
-            </p>
+              <p className="text-sm md:text-[15px] leading-relaxed text-gray-700 dark:text-gray-300 mb-4 flex-1">
+                {proj.desc}
+              </p>
 
-            <div className="flex flex-wrap gap-2">
-              {proj.techs.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="text-[11px] md:text-xs font-medium px-2.5 py-1 rounded-full
-                             bg-gray-50 text-violet-700 ring-1 ring-violet-200
-                             dark:bg-white/10 dark:text-white dark:ring-white/15"
-                >
-                  {tech}
-                </span>
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {proj.techs.map((tech, idx) => (
+                  <span
+                    key={idx}
+                    className="
+                      text-[11px] md:text-xs font-medium px-2.5 py-1 rounded-full
+                      bg-violet-100 text-violet-700
+                      dark:bg-gray-800 dark:text-gray-200
+                    "
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        </HashLink>
+          </HashLink>
+        </motion.div>
       ))}
     </div>
   );

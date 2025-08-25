@@ -39,7 +39,7 @@ function ThemeToggle() {
     <button
       onClick={() => withSmoothTransition(theme === "dark" ? "light" : "dark")}
       className="fixed bottom-6 right-6 p-3 rounded-full shadow-lg
-                 bg-white dark:bg-brand-950 hover:scale-105
+                 bg-white dark:opacity-80 dark:bg-brand-950 hover:scale-105
                  transition-transform duration-300"
       aria-label="Toggle dark mode"
     >

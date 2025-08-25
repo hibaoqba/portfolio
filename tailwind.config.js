@@ -1,11 +1,17 @@
-module.exports = {
-  darkMode: 'class',
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+import defaultTheme from "tailwindcss/defaultTheme";
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: "class",
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
   theme: {
     extend: {
       colors: {
-        violetTech: '#6A00F4',
-        violetTechHover: '#5e00d8ff',
+        violetTech: "#6A00F4",
+        violetTechHover: "#5e00d8ff",
         brand: {
           950: "#070b1fff", // Deep navy (dark bg)
           900: "#1c1c44ff", // Indigo (surfaces)
@@ -15,13 +21,16 @@ module.exports = {
           300: "#5c14d8ff",
           200: "#5423aaff",
           250: "#613aa5ff",
-
           100: "#e0c3ff",
           50:  "#F5F6FA",
         },
-
+      },
+      fontFamily: {
+        sans: ["var(--font-sans)", ...defaultTheme.fontFamily.sans],
+        display: ["var(--font-display)", ...defaultTheme.fontFamily.sans],
+        mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
       },
     },
   },
   plugins: [],
-}
+};
