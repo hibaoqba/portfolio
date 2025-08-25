@@ -9,8 +9,8 @@
   "home": {
     "title": "Hiba Oqba",
     "subtitle": "Software Engineer",
-    "cv": "Download my CV",
-    "cv-file":"assets/OqbaHiba_eng.pdf"
+    "cv": "View my CV",
+    "cv-file":"assets/cv_HibaOqba_lateng.pdf"
   },
   "about": {
     "title": "About me",
@@ -85,32 +85,85 @@
   ]
 }
 ,
-  "skillsTitle": "Skills",
+"skillsTitle": "Skills",
 "skillCategories": {
+  "languages": "Languages",
   "frontend": "Frontend",
   "backend": "Backend",
-  "database": "Database",
-  "tools": "DevOps & Tools"
+  "database": "Databases",
+  "devops": "DevOps & Cloud",
+  "testing": "Tests",
+  "collaboration": "Collaboration"
 },
 "skills": {
-  "frontend": [
-    { "name": "React" },
-    { "name": "Angular" },
-    { "name": "Tailwind CSS" }
+  "languages": [
+    { "name": "Java" },
+    { "name": "C#" },
+    { "name": "JavaScript" },
+    { "name": "Python" },
+    { "name": "C" },
+    { "name": "C++" },
+    { "name": "Kotlin" },
+    { "name": "PHP" }
   ],
   "backend": [
     { "name": ".NET Core" },
-    { "name": "Node.js" }
+    { "name": "ASP.NET MVC" },
+    { "name": "Spring Boot" },
+    { "name": "JEE" },
+    { "name": "Node.js" },
+    { "name": "REST" },
+    { "name": "MVC" },
+    { "name": "Microservices" },
+    { "name": "SOAP" }
   ],
+  "frontend": [
+    { "name": "Angular" },
+    { "name": "React" },
+    { "name": "Tailwind" },
+    { "name": "Bootstrap" },
+    { "name": "HTML" },
+    { "name": "CSS" }
+  ],
+  
   "database": [
+    { "name": "SQL Server" },
     { "name": "MySQL" },
-    { "name": "PostgreSQL" }
+    { "name": "PostgreSQL" },
+    { "name": "Oracle" }
   ],
-  "tools": [
+  "devops": [
+    { "name": "Git" },
+    { "name": "GitHub" },
+    { "name": "GitLab" },
+    { "name": "CI/CD" },
     { "name": "Docker" },
-    { "name": "Git" }
+    { "name": "Kubernetes" },
+    {"name":"Azure"},
+    { "name": "AWS" },
+    { "name": "GCP" }
+  ],
+  "testing": [
+    { "name": "JUnit" },
+    { "name": "xUnit" },
+    {"name":"Postman"},
+    { "name": "Mockito" },
+    { "name": "PyTest" },
+    { "name": "TDD" },
+    { "name": "SonarQube" },
+    {"name":"JaCoCo"},
+    {"name":"Selenium"},
+    {"name":"JMeter"}
+
+  ],
+  "collaboration": [
+    { "name": "Agile" },
+    { "name": "Scrum" },
+    { "name": "Kanban" },
+    { "name": "Jira" }
   ]
-},
+}
+,
 "portfolio": {
   "title": "Portfolio",
   "tabs": {

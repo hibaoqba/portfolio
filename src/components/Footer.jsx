@@ -40,7 +40,7 @@ function Footer() {
               </div>
             </div>
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              {t("footer.tagline", "Engineering reliable, user‑centric web experiences.")}
+              {t("footer.tagline", "Engineering reliable and scalable digital solutions.")}
             </p>
           </div>
 

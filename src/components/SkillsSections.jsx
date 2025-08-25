@@ -1,39 +1,52 @@
 import { memo, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { FaCode, FaServer, FaDatabase, FaTools } from "react-icons/fa";
+import { 
+  FaCode, FaLaptopCode, FaServer, FaDatabase, 
+  FaTools, FaVial, FaUsers 
+} from "react-icons/fa";
 
 const ICONS = {
-  frontend: <FaCode />,
+  languages: <FaCode />,
+  frontend: <FaLaptopCode />,
   backend: <FaServer />,
   database: <FaDatabase />,
-  tools: <FaTools />,
+  devops: <FaTools />,
+  testing: <FaVial />,
+  collaboration: <FaUsers />,
 };
 
 const ACCENT_GRAD = "bg-gradient-to-r from-violet-500 to-fuchsia-500";
 const CARD_SURFACE = "bg-white dark:bg-[#0d1230]";
 const CARD_BORDER = "border border-slate-200 dark:border-white/10";
-const CHIP =
-  "bg-slate-100 text-slate-700 ring-1 ring-slate-200 hover:ring-slate-300 dark:bg-white/5 dark:text-slate-200 dark:ring-white/10 dark:hover:ring-white/20";
 
 const SkillChip = memo(function SkillChip({ skill }) {
   return (
-    <span className={`${CHIP} text-sm font-medium px-3 py-1 rounded-full`}>
+    <div
+      className="px-3 py-1 text-sm font-medium rounded-full
+                 bg-slate-100 text-slate-700
+                 ring-1 ring-slate-200 
+                 hover:ring-violet-400 dark:hover:ring-fuchsia-400
+                 transition
+                 dark:bg-slate-800/40 dark:text-slate-200 dark:ring-white/10"
+    >
       {skill.name}
-    </span>
+    </div>
   );
 });
 
 const SkillCard = memo(function SkillCard({ category, label, list }) {
   return (
     <div
-      className={`relative rounded-2xl ${CARD_SURFACE} ${CARD_BORDER} shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.12)] dark:hover:shadow-[0_8px_28px_rgba(0,0,0,0.35)] transition-shadow`}
+      className={`relative rounded-2xl ${CARD_SURFACE} ${CARD_BORDER}
+      shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.25)]
+      hover:shadow-[0_0_10px_2px_rgba(168,85,247,0.4)] 
+      dark:hover:shadow-[0_0_10px_2px_rgba(232,121,249,0.3)]
+      transition-shadow duration-300`}
     >
       <div className="absolute inset-0 rounded-2xl pointer-events-none ring-1 ring-black/[0.02] dark:ring-white/[0.04]" />
       <div className="p-6 pb-3">
         <div className="flex items-center gap-3">
-          <span
-            className={`inline-flex h-9 w-9 items-center justify-center rounded-full ${ACCENT_GRAD} text-white`}
-          >
+          <span className={`inline-flex h-9 w-9 items-center justify-center rounded-full ${ACCENT_GRAD} text-white`}>
             {ICONS[category] ?? "✨"}
           </span>
           <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
