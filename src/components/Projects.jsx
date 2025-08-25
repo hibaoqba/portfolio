@@ -56,7 +56,7 @@ function Projects() {
                 border border-gray-200 dark:border-transparent
                 shadow-sm transition-all duration-300
                 hover:shadow-md hover:-translate-y-0.5
-                min-h-[260px] flex flex-col
+                min-h-[290px] flex flex-col
               "
             >
               <FiExternalLink
