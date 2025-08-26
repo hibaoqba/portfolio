@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaGitlab } from "react-icons/fa";
 import HeroPattern from "./HeroPattern";
 import ScrollIndicator from "./ScrollIndicator";
 import { FaChevronDown } from "react-icons/fa";
@@ -68,6 +68,15 @@ function Hero() {
           className="p-3 rounded-full bg-white/80 dark:bg-white/10 shadow hover:shadow-lg transition hover:-translate-y-0.5 text-slate-800 dark:text-white ring-1 ring-slate-200 dark:ring-white/20"
         >
           <FaGithub className="text-xl" />
+        </a>
+        <a
+          href={t("contact.links.gitlab")}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+          className="p-3 rounded-full bg-white/80 dark:bg-white/10 shadow hover:shadow-lg transition hover:-translate-y-0.5 text-slate-800 dark:text-white ring-1 ring-slate-200 dark:ring-white/20"
+        >
+          <FaGitlab className="text-xl" />
         </a>
       </div>
 

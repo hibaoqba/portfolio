@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useRef } from "react";
 
 const certifications = [
   {
@@ -23,27 +23,38 @@ const certifications = [
   },
 ];
 
-const CertItem = memo(function CertItem({ cert }) {
+const CertItem = memo(function CertItem({ cert, index }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (el) {
+      el.style.opacity = 0;
+      el.style.transform = "translateY(20px)";
+      requestAnimationFrame(() => {
+        el.style.transition = `opacity 0.6s ${index * 0.1}s ease-out, transform 0.6s ${index * 0.1}s ease-out`;
+        el.style.opacity = 1;
+        el.style.transform = "translateY(0)";
+      });
+    }
+  }, [index]);
+
   return (
     <a
+      ref={ref}
       href={cert.url}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={cert.title}
       className="group relative overflow-hidden rounded-2xl px-6 py-4
                  bg-white dark:bg-[#0d1230]
-                 border border-black/5 dark:border-white/10
+                 border border-gray-200 dark:border-white/10
                  shadow-sm hover:shadow-md transition-transform duration-150
-                 hover:-translate-y-0.5 focus:outline-none
+                 hover:-translate-y-1 focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-violet-400/60
-                 flex items-center gap-4"
+                 flex items-center gap-4 w-full sm:max-w-xl mx-auto"
       style={{ contentVisibility: "auto", contain: "layout paint style" }}
     >
-      <span
-        aria-hidden="true"
-        className="absolute left-0 top-0 bottom-0 w-[3px]
-                   bg-gradient-to-b from-violet-500 via-violet-500/70 to-fuchsia-500"
-      />
       <img
         src={`/assets/${cert.file}`}
         alt={cert.title}
@@ -51,9 +62,9 @@ const CertItem = memo(function CertItem({ cert }) {
         height={48}
         loading="lazy"
         decoding="async"
-        className="w-12 h-12 object-contain rounded-lg"
+        className="w-12 h-12 object-contain rounded-lg ring-1 ring-gray-200 dark:ring-white/10 bg-white dark:bg-white/10"
       />
-      <span className="text-slate-900 dark:text-white font-medium">
+      <span className="text-gray-900 dark:text-white font-medium text-sm md:text-base">
         {cert.title}
       </span>
     </a>
@@ -62,10 +73,10 @@ const CertItem = memo(function CertItem({ cert }) {
 
 function Certifications() {
   return (
-    <section id="certifications" className="py-20 px-6 md:px-20 bg-transparent">
-      <div className="flex flex-col gap-4">
-        {certifications.map((cert) => (
-          <CertItem key={cert.title} cert={cert} />
+    <section id="certifications" className="pt-0 pb-20 px-6 md:px-20 bg-transparent">
+      <div className="flex flex-col gap-4 items-center">
+        {certifications.map((cert, index) => (
+          <CertItem key={cert.title} cert={cert} index={index} />
         ))}
       </div>
     </section>

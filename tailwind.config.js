@@ -13,7 +13,8 @@ export default {
         violetTech: "#6A00F4",
         violetTechHover: "#5e00d8ff",
         brand: {
-          950: "#070b1fff", // Deep navy (dark bg)
+          950: "#070b1fff",
+          925: "#0b092dff",
           900: "#1c1c44ff", // Indigo (surfaces)
           700: "#535C91",
           600: "#eeeaffff", 

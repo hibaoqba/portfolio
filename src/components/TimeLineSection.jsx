@@ -8,10 +8,10 @@ function TimelineSection() {
   const START_EARLY_VH = 0.98;
   const ACTIVE_TARGET_VH = 0.30;
   const REVEAL_EDGE_VH = 0.96;
-  const REPLAY_ON_SCROLL = false;        // reveal once (lighter)
-  const ENABLE_ACTIVE_HILITE = false;    // disable per-scroll highlight
+  const REPLAY_ON_SCROLL = false;
+  const ENABLE_ACTIVE_HILITE = false;
 
-  const [activeIndex, setActiveIndex] = useState(0); // not used when ENABLE_ACTIVE_HILITE=false
+  const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState(() => Array(steps.length).fill(false));
 
   const containerRef = useRef(null);
@@ -35,7 +35,6 @@ function TimelineSection() {
     itemRefs.current = itemRefs.current.slice(0, steps.length);
   }, [steps.length]);
 
-  // measure layout once and on resize/steps change
   useEffect(() => {
     const measure = () => {
       const vh = window.innerHeight;
@@ -74,7 +73,6 @@ function TimelineSection() {
     };
   }, [steps.length]);
 
-  // rAF scroll loop using precomputed metrics
   useEffect(() => {
     let ticking = false;
 
@@ -84,8 +82,6 @@ function TimelineSection() {
       if (!vh || !containerHeight) return;
 
       const y = window.scrollY;
-
-      // side line progress (no CSS transition on height)
       const startY = vh * START_EARLY_VH;
       let progress = (y + startY - containerTop) / (containerHeight + startY);
       progress = Math.max(0, Math.min(1, progress));
@@ -93,7 +89,6 @@ function TimelineSection() {
         lineRef.current.style.height = (progress * 100).toFixed(2) + '%';
       }
 
-      // optional: active highlight (disabled by default for less churn)
       if (ENABLE_ACTIVE_HILITE) {
         const target = y + vh * ACTIVE_TARGET_VH;
         let best = 0, bestDist = Infinity;
@@ -104,7 +99,6 @@ function TimelineSection() {
         setActiveIndex(prev => (prev === best ? prev : best));
       }
 
-      // reveal earlier (no replay when REPLAY_ON_SCROLL=false)
       const threshold = y + vh * REVEAL_EDGE_VH;
       const next = itemTops.map((top, i) =>
         REPLAY_ON_SCROLL ? top < threshold : (revealed[i] || top < threshold)
@@ -126,27 +120,25 @@ function TimelineSection() {
       }
     };
 
-    onScroll(); // initial
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, [REPLAY_ON_SCROLL, START_EARLY_VH, ACTIVE_TARGET_VH, REVEAL_EDGE_VH, revealed]);
 
   return (
-    <section id="timeline" className="py-20 px-6 md:px-20 bg-white dark:bg-transparent">
-      <h2 className="text-3xl font-bold mb-16 text-center text-gray-900 dark:text-white">
+    <section id="timeline" className="py-20 px-6 md:px-20 bg-transparent">
+      <h2 className="text-4xl font-extrabold mb-16 text-center text-gray-900 dark:text-white">
         {t('timeline.title')}
       </h2>
 
       <div
         ref={containerRef}
-        className="relative border-l ml-4 md:ml-1 w-full px-6 border-purple-300/60 dark:border-purple-400/30"
+        className="relative border-l border-gray-300 dark:border-white/10 ml-4 md:ml-1 w-full px-6"
       >
-        {/* side progress (no transition on height to avoid per-scroll anim) */}
         <div
           ref={lineRef}
           className="pointer-events-none absolute -left-[1px] top-0 w-[3px] rounded-full
-                     bg-gradient-to-b from-purple-500 via-purple-500/70 to-transparent
-                     transition-none motion-reduce:transition-none"
+                     bg-gradient-to-b from-purple-500 via-purple-400 to-transparent"
           aria-hidden="true"
         />
 
@@ -157,30 +149,27 @@ function TimelineSection() {
             className="relative mb-12 ml-6 pr-20 scroll-mt-28"
             style={{ contentVisibility: 'auto', contain: 'layout paint style' }}
           >
-            {/* DOT — keep your original pulse on the first item */}
             <div
               className={`absolute -left-6 top-1.5 w-4 h-4 rounded-full
-                          border-4 border-white/90 dark:border-black/30 shadow-lg
+                          border-4 border-white dark:border-black shadow-lg
                           ${index === 0
                             ? 'bg-purple-600 dark:bg-purple-400 animate-pulse'
-                            : 'bg-gray-300 dark:bg-gray-500'}`}
+                            : 'bg-gray-300 dark:bg-gray-600'}`}
             />
 
-            {/* CARD */}
             <div
               className={`rounded-2xl transform-gpu
-                          transition-[opacity,transform] duration-300 ease-out
+                          transition-all duration-500 ease-out
                           ${revealed[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
                           motion-reduce:transition-none motion-reduce:translate-y-0`}
               style={{ transitionDelay: revealed[index] ? `${Math.min(index * 80, 240)}ms` : '0ms' }}
             >
               <div className="rounded-2xl p-[1px]
-                              bg-gradient-to-tr from-purple-500/40 via-indigo-400/30 to-purple-300/40
-                              dark:bg-gradient-to-tr dark:from-purple-500/20 dark:via-indigo-400/15 dark:to-purple-300/20">
+                          bg-gradient-to-tr from-purple-500/30 via-indigo-400/20 to-purple-300/20">
                 <div
                   className="relative rounded-[1rem]
-                             bg-white/95 backdrop-blur-sm border border-transparent shadow-sm
-                             dark:bg-black/20 dark:backdrop-blur-sm dark:border-purple-400/10"
+                             bg-white/95 backdrop-blur-md border border-gray-200 shadow-sm
+                             dark:bg-black/30 dark:border-white/10"
                 >
                   {step.logo && (
                     <img
@@ -189,10 +178,8 @@ function TimelineSection() {
                       loading="lazy"
                       decoding="async"
                       className="w-20 h-20 object-contain absolute right-4 top-1/2 -translate-y-1/2
-                                 bg-white/90 dark:bg-white/5 rounded-xl p-2
-                                 ring-1 ring-purple-300/40 dark:ring-purple-400/20
-                                 /* no activeIndex scale; keep only hover if you want */
-                                "
+                                 bg-white dark:bg-white/10 rounded-xl p-2
+                                 ring-1 ring-purple-300/30 dark:ring-purple-400/20"
                     />
                   )}
 

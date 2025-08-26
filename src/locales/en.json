@@ -200,7 +200,8 @@
   "subject": "Portfolio contact – {{name}}",
   "links": {
     "linkedin": "https://www.linkedin.com/in/hiba-oqba-486a0221a/",
-    "github": "https://github.com/hibaoqba"
+    "github": "https://github.com/hibaoqba",
+    "gitlab": "https://gitlab.com/hibaoqba"
   },
   "form": {
     "name": "Name",

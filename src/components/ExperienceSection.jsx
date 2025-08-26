@@ -11,7 +11,6 @@ function ExperienceSection() {
   const itemRefs = useRef([]);
   const observerRef = useRef(null);
 
-  // keep refs aligned
   useEffect(() => {
     itemRefs.current = itemRefs.current.slice(0, steps.length);
   }, [steps.length]);
@@ -26,14 +25,10 @@ function ExperienceSection() {
           for (const e of entries) {
             if (!e.isIntersecting) continue;
             const el = e.target;
-
-            // reveal with stagger (no React state update)
-            const delay = el.dataset.delay || '0ms';
-            el.style.transitionDelay = delay;
+            el.style.transitionDelay = el.dataset.delay || '0ms';
             el.style.opacity = '1';
             el.style.transform = 'none';
-
-            observerRef.current.unobserve(el); // reveal once
+            observerRef.current.unobserve(el);
           }
         },
         { root: null, rootMargin: `0px 0px -${marginPx}px 0px`, threshold: 0 }
@@ -60,83 +55,54 @@ function ExperienceSection() {
         {steps.map((step, index) => (
           <article
             key={index}
-            className="relative group"
+            ref={el => (itemRefs.current[index] = el)}
+            data-delay={`${Math.min(index * STAGGER_MS, 280)}ms`}
+            style={{ opacity: 0, transform: 'translateY(10px)', contentVisibility: 'auto', contain: 'layout paint style' }}
+            className="transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none
+                       bg-white dark:bg-[#0B0B14]/40 border border-gray-200 dark:border-white/10 shadow-sm
+                       rounded-2xl p-6 hover:shadow-md hover:-translate-y-1 transition-all"
             aria-label={step.title}
-            // skip layout/paint work for far-offscreen items
-            style={{ contentVisibility: 'auto', contain: 'layout paint style' }}
           >
-            {/* Reveal wrapper (animated via IO, not React state) */}
-            <div
-              ref={el => (itemRefs.current[index] = el)}
-              data-delay={`${Math.min(index * STAGGER_MS, 280)}ms`}
-              className="rounded-2xl transform-gpu transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]
-                         motion-reduce:transition-none"
-              style={{ opacity: 0, transform: 'translateY(10px)' }}
-            >
-              <div
-                className="relative rounded-[1rem]
-                           bg-white/90 supports-[backdrop-filter]:bg-white/70 md:supports-[backdrop-filter]:backdrop-blur-md
-                           border border-transparent shadow-sm
-                           dark:bg-[#0B0B14]/40 md:dark:supports-[backdrop-filter]:backdrop-blur-md dark:border-fuchsia-400/10
-                           transition-shadow duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]
-                           group-hover:shadow-[0_10px_30px_-10px_rgba(217,70,239,0.18)]"
-              >
-                {/* left accent bar */}
-                <span
-                  aria-hidden="true"
-                  className="absolute left-2 top-3 bottom-3 w-[3px] rounded-full
-                             bg-gradient-to-b from-fuchsia-500 via-violet-500/70 to-cyan-400 opacity-80"
-                />
-
-                {step.logo && (
-                  <img
-                    src={step.logo}
-                    alt={`Logo of ${step.title}`}
-                    loading="lazy"
-                    decoding="async"
-                    width={48}
-                    height={48}
-                    className="w-12 h-12 object-contain absolute right-4 top-4
-                               bg-white/90 dark:bg-white/5 rounded-lg p-2
-                               ring-1 ring-fuchsia-300/40 dark:ring-fuchsia-400/20
-                               transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] transform-gpu
-                               group-hover:scale-105"
-                  />
-                )}
-
-                <div className="p-6 pr-20">
-                  <div className="mb-2 text-xs text-gray-600 dark:text-gray-300">
-                    {step.year}
-                    <span className="mx-1 text-gray-400">—</span>
-                    {step.location}
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-black dark:text-white mb-2">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
-                    {step.description}
-                  </p>
-
-                  {!!step.skills?.length && (
-                    <div className="flex flex-wrap gap-2">
-                      {step.skills.map((skill, i) => (
-                        <span
-                          key={i}
-                          className="text-xs font-medium px-3 py-1 rounded-full
-                                     bg-white/80 text-violet-700 ring-1 ring-violet-200
-                                     hover:bg-white transition-colors
-                                     dark:bg-white/10 dark:text-white dark:ring-white/15"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                  {step.year} <span className="mx-1 text-gray-400">—</span> {step.location}
                 </div>
+                <h3 className="text-lg font-semibold text-black dark:text-white">
+                  {step.title}
+                </h3>
               </div>
+              {step.logo && (
+                <img
+                  src={step.logo}
+                  alt={`Logo of ${step.title}`}
+                  loading="lazy"
+                  decoding="async"
+                  width={48}
+                  height={48}
+                  className="w-12 h-12 object-contain rounded bg-white/80 dark:bg-white/10 p-2 ring-1 ring-gray-200 dark:ring-white/10"
+                />
+              )}
             </div>
+
+            <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+              {step.description}
+            </p>
+
+            {!!step.skills?.length && (
+              <div className="flex flex-wrap gap-2">
+                {step.skills.map((skill, i) => (
+                  <span
+                    key={i}
+                    className="text-xs font-medium px-3 py-1 rounded-full
+                               bg-gray-100 text-gray-800 dark:bg-white/10 dark:text-white
+                               ring-1 ring-gray-300 dark:ring-white/15"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            )}
           </article>
         ))}
       </div>
