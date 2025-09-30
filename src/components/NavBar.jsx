@@ -207,25 +207,10 @@ function NavBar() {
                             ${isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 pointer-events-none invisible"}`}
                 aria-hidden={!isOpen}
             >
-                {/* Fond du menu : Opaque et sombre */}
                 <div className="rounded-xl bg-white dark:bg-brand-950 border border-gray-200 dark:border-brand-900 shadow-xl overflow-hidden">
                     
-                    {/* Header du Menu Mobile (Contient le bouton Fermer X) */}
-                    <div className="px-4 py-3 flex items-center justify-end border-b border-gray-100 dark:border-brand-900/50">
-                        
-                        {/* Bouton de Fermeture "X" du menu */}
-                        <button 
-                            onClick={() => setIsOpen(false)} 
-                            aria-label="Close menu" 
-                            className="p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white"
-                        >
-                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                   
 
-                    {/* Navigation Links */}
                     <nav className="p-2 space-y-1" aria-label="Mobile">
                         {links.map((l, i) => (
                             <MobileNavItem
