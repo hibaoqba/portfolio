@@ -6,7 +6,6 @@ import ReactCountryFlag from "react-country-flag";
 
 // Composante pour les liens du menu mobile
 function MobileNavItem({ to, children, isActive, onClick }) {
-    // Changement de style pour l'état actif (moins de couleur)
     return (
         <HashLink
             smooth
@@ -14,9 +13,8 @@ function MobileNavItem({ to, children, isActive, onClick }) {
             onClick={onClick}
             className={`block px-4 py-3 text-base font-semibold rounded-lg transition-colors duration-200 
                         ${isActive 
-                            // État Actif: Lighter gray background, strong text color
+                            // État Actif: Gris très clair pour une touche subtile
                             ? "bg-gray-100/70 text-gray-900 dark:bg-gray-800/70 dark:text-white" 
-                            // État Normal: Hover effect lighter
                             : "text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-900"
                         } 
                         focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 w-full text-left`}
@@ -38,7 +36,6 @@ function NavItem({ to, children, isActive, onClick }) {
             aria-current={isActive ? "page" : undefined}
         >
             <span className="inline-block">{children}</span>
-            {/* Ligne de soulignement : Remplacement de brand-300/400 par des gris */}
             <span
                 className={`pointer-events-none absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left bg-gray-500 dark:bg-gray-300 transition-transform duration-300 ${isActive ? "scale-x-100" : "scale-x-0"} group-hover:scale-x-100`}
             />
@@ -58,12 +55,11 @@ function NavBar() {
     const prefix = `/${i18n.language}`;
 
     // --- Hooks et Logique (inchangés) ---
-    // ... (Your existing useEffects for intersection observer, esc key, focus, etc.) ...
-    
+
     useEffect(() => {
         if (hash) setActiveSection(hash);
     }, [hash, pathname, i18n.language]);
-
+    
     useEffect(() => {
         let io = null;
         let raf = null;
@@ -95,7 +91,11 @@ function NavBar() {
                 if (e.key === "Escape") setIsOpen(false);
             };
             const onClickOutside = (e) => {
-                if (menuRef.current && !menuRef.current.contains(e.target)) setIsOpen(false);
+                // S'assurer que le clic n'est pas sur le menu ET pas sur le bouton toggle lui-même
+                const toggleButton = document.querySelector('[aria-controls="mobile-menu"]');
+                if (menuRef.current && !menuRef.current.contains(e.target) && !toggleButton.contains(e.target)) {
+                    setIsOpen(false);
+                }
             };
             window.addEventListener("keydown", onKey);
             window.addEventListener("pointerdown", onClickOutside);
@@ -135,15 +135,14 @@ function NavBar() {
 
     return (
         <nav
-            // Fond de la barre de navigation (fond blanc/gris foncé)
-            className="fixed top-0 left-0 z-50 w-full bg-white/80 backdrop-blur-xl supports-[backdrop-filter]:bg-white/80 border-b border-gray-100 shadow-sm dark:bg-gray-950/80 dark:supports-[backdrop-filter]:bg-gray-950/70 dark:border-gray-900"
+            // Fond de la barre de navigation : plus clair (plus d'opacité en mode clair, moins d'opacité en mode sombre)
+            className="fixed top-0 left-0 z-50 w-full bg-white/90 backdrop-blur-xl supports-[backdrop-filter]:bg-white/90 border-b border-gray-100 shadow-sm dark:bg-gray-900/60 dark:supports-[backdrop-filter]:bg-gray-900/60 dark:border-gray-800"
             role="navigation"
             aria-label="Main"
         >
             {/* --- En-tête Principal (Desktop & Mobile) --- */}
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                 <HashLink smooth to={`${prefix}#home`} className="flex items-center gap-2">
-                    {/* Les couleurs du logo devront être ajustées si elles sont fixes en violet */}
                     <img src="/hiba_logo.png" alt="Hiba Oqba logo" className="h-10 w-10 object-contain dark:brightness-95" />
                     <span className="text-xl font-bold text-gray-950 dark:text-white">Hiba Oqba</span>
                 </HashLink>
@@ -156,21 +155,20 @@ function NavBar() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                    {/* Bouton Hamburger Mobile (Icône en blanc/noir) */}
+                    {/* Bouton Hamburger Mobile (Change en icône de menu vertical pour fermer) */}
                     <button
                         onClick={() => setIsOpen(v => !v)}
                         aria-expanded={isOpen}
                         aria-controls="mobile-menu"
-                        // Couleurs de focus ajustées de brand-400 à gray-500
                         className="md:hidden inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 dark:text-white text-gray-950"
                         title={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
                     >
                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             {isOpen ? (
-                                // Icône à trois points verticaux pour fermer
+                                // Icône de menu vertical (trois barres verticales) pour la fermeture
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01" />
                             ) : (
-                                // Icône Hamburger pour ouvrir
+                                // Icône Hamburger pour l'ouverture
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             )}
                         </svg>
@@ -186,10 +184,10 @@ function NavBar() {
                             ${isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 pointer-events-none invisible"}`}
                 aria-hidden={!isOpen}
             >
-                {/* Le fond du menu (blanc/gris foncé) */}
-                <div className="rounded-xl bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-900 shadow-xl overflow-hidden">
+                {/* Fond du menu : plus clair (plus d'opacité en mode clair, moins d'opacité en mode sombre) */}
+                <div className="rounded-xl bg-white/95 dark:bg-gray-950/95 border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden">
                     
-                    {/* Espace pour les liens (padding ajusté) */}
+                    {/* Navigation Links */}
                     <nav className="p-2 space-y-1 pt-4" aria-label="Mobile">
                         {links.map((l, i) => (
                             <MobileNavItem
@@ -203,12 +201,11 @@ function NavBar() {
                         ))}
                     </nav>
 
-                    {/* Sélecteur de Langue (Placé en bas du menu - couleurs neutres) */}
-                    <div className="p-4 border-t border-gray-100 dark:border-gray-900/50 flex justify-center">
+                    {/* Sélecteur de Langue (Placé en bas du menu) */}
+                    <div className="p-4 border-t border-gray-100 dark:border-gray-800 flex justify-center">
                         <button
                             onClick={toggleLang}
                             title="Switch language"
-                            // Couleurs neutres pour le fond du sélecteur
                             className="relative flex items-center rounded-full w-24 h-9 overflow-hidden bg-gray-100 hover:bg-gray-200/80 dark:bg-gray-800 dark:hover:bg-gray-700/80 transition"
                             aria-label="Toggle language"
                         >
