@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import ReactCountryFlag from "react-country-flag";
 
-// Mobile-specific NavItem Component (More block-like for better tap target)
+// Composante pour les liens du menu mobile (Full-width, Active state prominent)
 function MobileNavItem({ to, children, isActive, onClick }) {
     return (
         <HashLink
@@ -24,7 +24,7 @@ function MobileNavItem({ to, children, isActive, onClick }) {
     );
 }
 
-// Re-using the desktop NavItem for consistency
+// Composante pour les liens du menu desktop (Soulignement)
 function NavItem({ to, children, isActive, onClick }) {
     return (
         <HashLink
@@ -53,7 +53,7 @@ function NavBar() {
     const firstLinkRef = useRef(null);
     const prefix = `/${i18n.language}`;
 
-    // --- Original Effects (Kept for functionality) ---
+    // --- Hooks et Logique (inchangés) ---
 
     useEffect(() => {
         if (hash) setActiveSection(hash);
@@ -127,7 +127,7 @@ function NavBar() {
         { id: "contact", to: `${prefix}#contact`, label: t("navbar.contact") },
     ];
 
-    // --- Rendering ---
+    // --- Rendu ---
 
     return (
         <nav
@@ -135,62 +135,44 @@ function NavBar() {
             role="navigation"
             aria-label="Main"
         >
-            {/* --- Desktop/Main Header --- */}
+            {/* --- En-tête Principal (Desktop & Mobile) --- */}
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                 <HashLink smooth to={`${prefix}#home`} className="flex items-center gap-2">
                     <img src="/hiba_logo.png" alt="Hiba Oqba logo" className="h-10 w-10 object-contain dark:brightness-95" />
                     <span className="text-xl font-bold text-brand-950 dark:text-white">Hiba Oqba</span>
                 </HashLink>
 
-                {/* Desktop Links */}
+                {/* Liens Desktop */}
                 <div className="hidden md:flex items-center gap-6">
                     {links.map(l => (
                         <NavItem key={l.id} to={l.to} isActive={activeSection === `#${l.id}`}>{l.label}</NavItem>
                     ))}
                 </div>
 
-                {/* Language Toggle and Mobile Menu Button */}
                 <div className="flex items-center gap-3">
-                    {/* Reusable Flag Toggle */}
-                    <button
-                        onClick={toggleLang}
-                        title="Switch language"
-                        className="relative flex items-center rounded-full w-20 h-8 overflow-hidden bg-brand-50 hover:bg-brand-400/20 dark:bg-brand-900 dark:hover:bg-brand-900/80 transition"
-                        aria-label="Toggle language"
-                    >
-                        <span
-                            className={`absolute top-1 left-1 w-8 h-6 rounded-full shadow z-10 flex items-center justify-center text-xs font-bold bg-white text-brand-950 dark:bg-brand-950 dark:text-brand-50 transition-transform duration-300 ${i18n.language === "fr" ? "translate-x-0" : "translate-x-10"}`}
-                        >
-                            {i18n.language === "fr" ? "FR" : "EN"}
-                        </span>
-                        <span className="absolute left-2 flex items-center" aria-hidden="true">
-                            <ReactCountryFlag countryCode="FR" svg style={{ fontSize: "1rem" }} />
-                        </span>
-                        <span className="absolute right-2 flex items-center" aria-hidden="true">
-                            <ReactCountryFlag countryCode="GB" svg style={{ fontSize: "1rem" }} />
-                        </span>
-                    </button>
-
-                    {/* Mobile Hamburger Button */}
+                    {/* Sélecteur de langue retiré de l'en-tête principal ici. */}
+                    
+                    {/* Bouton Hamburger Mobile (Couleur en blanc) */}
                     <button
                         onClick={() => setIsOpen(v => !v)}
                         aria-expanded={isOpen}
                         aria-controls="mobile-menu"
-                        className="md:hidden inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white"
+                        className="md:hidden inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white text-brand-950"
                         title="Toggle menu"
                     >
-                        <svg className={`w-6 h-6 transition-transform ${isOpen ? "rotate-90" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        {/* Icône simplifiée, rotation retirée */}
+                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             {isOpen ? (
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /> // Icône 'X'
                             ) : (
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /> // Icône Hamburger
                             )}
                         </svg>
                     </button>
                 </div>
             </div>
 
-            {/* --- Mobile Menu Content --- */}
+            {/* --- Contenu du Menu Mobile --- */}
             <div
                 id="mobile-menu"
                 ref={menuRef}
@@ -200,30 +182,10 @@ function NavBar() {
             >
                 <div className="rounded-xl bg-white dark:bg-brand-950 border border-gray-200 dark:border-brand-900 shadow-xl overflow-hidden">
                     
-                    {/* Cleaned-up Header (Language Toggle & Close Button) */}
+                    {/* En-tête du Menu Mobile (Contient seulement le bouton de fermeture) */}
                     <div className="px-4 py-3 flex items-center justify-end border-b border-gray-100 dark:border-brand-900/50">
-                        {/* Re-using the flag toggle style for better UX */}
-                        <button
-                            onClick={toggleLang}
-                            title="Switch language"
-                            className="relative flex items-center rounded-full w-20 h-8 overflow-hidden bg-brand-50 hover:bg-brand-400/20 dark:bg-brand-900 dark:hover:bg-brand-900/80 transition mr-4"
-                            aria-label="Toggle language"
-                        >
-                            <span
-                                className={`absolute top-1 left-1 w-8 h-6 rounded-full shadow z-10 flex items-center justify-center text-xs font-bold bg-white text-brand-950 dark:bg-brand-950 dark:text-brand-50 transition-transform duration-300 ${i18n.language === "fr" ? "translate-x-0" : "translate-x-10"}`}
-                            >
-                                {i18n.language === "fr" ? "FR" : "EN"}
-                            </span>
-                            <span className="absolute left-2 flex items-center" aria-hidden="true">
-                                <ReactCountryFlag countryCode="FR" svg style={{ fontSize: "1rem" }} />
-                            </span>
-                            <span className="absolute right-2 flex items-center" aria-hidden="true">
-                                <ReactCountryFlag countryCode="GB" svg style={{ fontSize: "1rem" }} />
-                            </span>
-                        </button>
-                        
-                        <button onClick={() => setIsOpen(false)} aria-label="Close menu" className="p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white">
-                             {/* Close Icon */}
+                        <button onClick={() => setIsOpen(false)} aria-label="Close menu" className="p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white text-brand-950">
+                             {/* Icône de Fermeture (Couleur en blanc) */}
                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -244,22 +206,28 @@ function NavBar() {
                         ))}
                     </nav>
 
-                    {/* Call to Action (CTA) */}
-                    <div className="p-4 border-t border-gray-100 dark:border-brand-900/50">
-                        <a
-                            href="/your-resume.pdf" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="w-full inline-flex justify-center items-center px-4 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-violetTech hover:bg-brand-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-violetTech focus-visible:ring-offset-2 transition duration-150 ease-in-out"
-                            onClick={() => setIsOpen(false)} // Close menu on click
+                    {/* Sélecteur de Langue (Placé en bas du menu) */}
+                    <div className="p-4 border-t border-gray-100 dark:border-brand-900/50 flex justify-center">
+                        <button
+                            onClick={toggleLang}
+                            title="Switch language"
+                            className="relative flex items-center rounded-full w-24 h-9 overflow-hidden bg-brand-50 hover:bg-brand-400/20 dark:bg-brand-900 dark:hover:bg-brand-900/80 transition"
+                            aria-label="Toggle language"
                         >
-                            {t("navbar.download_cv")} 
-                            <svg className="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L10 12.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z" clipRule="evenodd" />
-                                <path fillRule="evenodd" d="M10 2a1 1 0 011 1v9a1 1 0 11-2 0V3a1 1 0 011-1z" clipRule="evenodd" />
-                            </svg>
-                        </a>
+                            <span
+                                className={`absolute top-1 left-1 w-11 h-7 rounded-full shadow z-10 flex items-center justify-center text-sm font-bold bg-white text-brand-950 dark:bg-brand-950 dark:text-brand-50 transition-transform duration-300 ${i18n.language === "fr" ? "translate-x-0" : "translate-x-12"}`}
+                            >
+                                {i18n.language === "fr" ? "FR" : "EN"}
+                            </span>
+                            <span className="absolute left-2 flex items-center" aria-hidden="true">
+                                <ReactCountryFlag countryCode="FR" svg style={{ fontSize: "1.2rem" }} />
+                            </span>
+                            <span className="absolute right-2 flex items-center" aria-hidden="true">
+                                <ReactCountryFlag countryCode="GB" svg style={{ fontSize: "1.2rem" }} />
+                            </span>
+                        </button>
                     </div>
+
                 </div>
             </div>
         </nav>
