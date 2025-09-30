@@ -17,7 +17,7 @@ const ICONS = {
 
 const ACCENT_GRAD = "bg-gradient-to-r from-violet-500 to-fuchsia-500";
 const CARD_SURFACE = "bg-white dark:bg-[#0d1230]";
-const CARD_BORDER = "border border-slate-200 dark:border-white/10";
+const CARD_BORDER = "border border-slate-200 dark:border-transparent";
 
 const SkillChip = memo(function SkillChip({ skill }) {
   return (

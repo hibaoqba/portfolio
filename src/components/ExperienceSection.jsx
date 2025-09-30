@@ -59,7 +59,7 @@ function ExperienceSection() {
             data-delay={`${Math.min(index * STAGGER_MS, 280)}ms`}
             style={{ opacity: 0, transform: 'translateY(10px)', contentVisibility: 'auto', contain: 'layout paint style' }}
             className="transition-[opacity,transform] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none
-                       bg-white dark:bg-[#0B0B14]/40 border border-gray-200 dark:border-white/10 shadow-sm
+                       bg-white dark:bg-[#0B0B14]/40 border border-gray-200 dark:border-transparent shadow-sm
                        rounded-2xl p-6 hover:shadow-md hover:-translate-y-1 transition-all"
             aria-label={step.title}
           >

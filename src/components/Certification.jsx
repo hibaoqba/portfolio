@@ -48,7 +48,7 @@ const CertItem = memo(function CertItem({ cert, index }) {
       aria-label={cert.title}
       className="group relative overflow-hidden rounded-2xl px-6 py-4
                  bg-white dark:bg-[#0d1230]
-                 border border-gray-200 dark:border-white/10
+                 border border-gray-200 dark:border-transparent/10
                  shadow-sm hover:shadow-md transition-transform duration-150
                  hover:-translate-y-1 focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-violet-400/60

@@ -9,7 +9,6 @@ function TimelineSection() {
   const ACTIVE_TARGET_VH = 0.30;
   const REVEAL_EDGE_VH = 0.96;
   const REPLAY_ON_SCROLL = false;
-  const ENABLE_ACTIVE_HILITE = false;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [revealed, setRevealed] = useState(() => Array(steps.length).fill(false));
@@ -51,53 +50,37 @@ function TimelineSection() {
         return r.top + window.scrollY;
       });
 
-      const itemCenters = itemRefs.current.map((el, i) => {
-        if (!el) return 0;
-        return itemTops[i] + el.offsetHeight / 2;
-      });
+      const itemCenters = itemRefs.current.map((el, i) =>
+        el ? itemTops[i] + el.offsetHeight / 2 : 0
+      );
 
       metricsRef.current = { vh, containerTop, containerHeight, itemTops, itemCenters };
     };
 
     measure();
-    const ro = new ResizeObserver(() => measure());
+    const ro = new ResizeObserver(measure);
     if (containerRef.current) ro.observe(containerRef.current);
     itemRefs.current.forEach(el => el && ro.observe(el));
-
-    const onResize = () => measure();
-    window.addEventListener('resize', onResize);
+    window.addEventListener('resize', measure);
 
     return () => {
       ro.disconnect();
-      window.removeEventListener('resize', onResize);
+      window.removeEventListener('resize', measure);
     };
   }, [steps.length]);
 
   useEffect(() => {
     let ticking = false;
-
     const update = () => {
       ticking = false;
-      const { vh, containerTop, containerHeight, itemTops, itemCenters } = metricsRef.current;
+      const { vh, containerTop, containerHeight, itemTops } = metricsRef.current;
       if (!vh || !containerHeight) return;
 
       const y = window.scrollY;
       const startY = vh * START_EARLY_VH;
       let progress = (y + startY - containerTop) / (containerHeight + startY);
       progress = Math.max(0, Math.min(1, progress));
-      if (lineRef.current) {
-        lineRef.current.style.height = (progress * 100).toFixed(2) + '%';
-      }
-
-      if (ENABLE_ACTIVE_HILITE) {
-        const target = y + vh * ACTIVE_TARGET_VH;
-        let best = 0, bestDist = Infinity;
-        for (let i = 0; i < itemCenters.length; i++) {
-          const d = Math.abs(itemCenters[i] - target);
-          if (d < bestDist) { bestDist = d; best = i; }
-        }
-        setActiveIndex(prev => (prev === best ? prev : best));
-      }
+      if (lineRef.current) lineRef.current.style.height = (progress * 100).toFixed(2) + '%';
 
       const threshold = y + vh * REVEAL_EDGE_VH;
       const next = itemTops.map((top, i) =>
@@ -123,78 +106,66 @@ function TimelineSection() {
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [REPLAY_ON_SCROLL, START_EARLY_VH, ACTIVE_TARGET_VH, REVEAL_EDGE_VH, revealed]);
+  }, [revealed]);
 
   return (
     <section id="timeline" className="py-20 px-6 md:px-20 bg-transparent">
-      <h2 className="text-4xl font-extrabold mb-16 text-center text-gray-900 dark:text-white">
+      <h2 className="text-4xl font-extrabold mb-16 text-center  bg-clip-text text-transparent">
         {t('timeline.title')}
       </h2>
 
+      <section id="timeline" className="py-20 px-6 md:px-20 bg-transparent">
+  <h2 className="text-4xl font-extrabold mb-16 text-center text-white">
+    {t('timeline.title')}
+  </h2>
+
+  <div ref={containerRef} className="relative ml-0 md:ml-1 w-full">
+    <div
+      ref={lineRef}
+      className="pointer-events-none absolute left-0.5 top-0 w-[4px] rounded-full
+                 bg-gradient-to-b from-violetTech via-brand-300 to-transparent"
+      aria-hidden="true"
+    />
+
+    {steps.map((step, index) => (
       <div
-        ref={containerRef}
-        className="relative border-l border-gray-300 dark:border-white/10 ml-4 md:ml-1 w-full px-6"
+        key={index}
+        ref={el => (itemRefs.current[index] = el)}
+        className="relative mb-12 pl-2"
       >
-        <div
-          ref={lineRef}
-          className="pointer-events-none absolute -left-[1px] top-0 w-[3px] rounded-full
-                     bg-gradient-to-b from-purple-500 via-purple-400 to-transparent"
-          aria-hidden="true"
-        />
+        <div className="absolute -left-1 top-2 w-4 h-4 rounded-full bg-white dark:bg-brand-925 ring-4 ring-violetTech/30">
+          <div className="absolute inset-0 m-auto w-2 h-2 rounded-full bg-violetTech" />
+        </div>
 
-        {steps.map((step, index) => (
-          <div
-            key={index}
-            ref={el => (itemRefs.current[index] = el)}
-            className="relative mb-12 ml-6 pr-20 scroll-mt-28"
-            style={{ contentVisibility: 'auto', contain: 'layout paint style' }}
-          >
-            <div
-              className={`absolute -left-6 top-1.5 w-4 h-4 rounded-full
-                          border-4 border-white dark:border-black shadow-lg
-                          ${index === 0
-                            ? 'bg-purple-600 dark:bg-purple-400 animate-pulse'
-                            : 'bg-gray-300 dark:bg-gray-600'}`}
-            />
-
-            <div
-              className={`rounded-2xl transform-gpu
-                          transition-all duration-500 ease-out
-                          ${revealed[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}
-                          motion-reduce:transition-none motion-reduce:translate-y-0`}
-              style={{ transitionDelay: revealed[index] ? `${Math.min(index * 80, 240)}ms` : '0ms' }}
-            >
-              <div className="rounded-2xl p-[1px]
-                          bg-gradient-to-tr from-purple-500/30 via-indigo-400/20 to-purple-300/20">
-                <div
-                  className="relative rounded-[1rem]
-                             bg-white/95 backdrop-blur-md border border-gray-200 shadow-sm
-                             dark:bg-black/30 dark:border-white/10"
-                >
-                  {step.logo && (
-                    <img
-                      src={step.logo}
-                      alt={`Logo de ${step.title}`}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-20 h-20 object-contain absolute right-4 top-1/2 -translate-y-1/2
-                                 bg-white dark:bg-white/10 rounded-xl p-2
-                                 ring-1 ring-purple-300/30 dark:ring-purple-400/20"
-                    />
-                  )}
-
-                  <div className="p-5 pr-24">
-                    <time className="block text-sm text-gray-500 dark:text-gray-300">{step.year}</time>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{step.title}</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm">{step.location}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+        <div className="relative mb-12 max-w-2xl mx-auto">
+          <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white/70 dark:bg-brand-950/70 backdrop-blur-md shadow-md p-6 relative">
+            {step.logo && (
+              <img
+                src={step.logo}
+                alt={step.title ? String(step.title) : 'Logo'}
+                loading="lazy"
+                decoding="async"
+                className="w-16 h-16 object-contain absolute top-4 right-4
+                           bg-white dark:bg-white/10 rounded-xl p-2
+                           ring-1 ring-gray-200 dark:ring-white/10"
+              />
+            )}
+            <time className="block text-sm text-gray-600 dark:text-gray-300">{step.year}</time>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{step.title}</h3>
+            {step.location && (
+              <p className="text-sm text-gray-600 dark:text-gray-400">{step.location}</p>
+            )}
+            {step.description && (
+              <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">{step.description}</p>
+            )}
           </div>
-        ))}
+        </div>
       </div>
+    ))}
+  </div>
+</section>
+
+
     </section>
   );
 }
