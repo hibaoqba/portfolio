@@ -166,19 +166,15 @@ function NavBar() {
                     <span className="text-xl font-bold text-brand-950 dark:text-white">Hiba Oqba</span>
                 </HashLink>
 
-                {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-6">
                     {links.map(l => (
                         <NavItem key={l.id} to={l.to} isActive={activeSection === `#${l.id}`}>{l.label}</NavItem>
                     ))}
                 </div>
 
-                {/* Language Toggle and Mobile Menu Button */}
                 <div className="flex items-center gap-3">
-                    {/* Language Toggle (Always visible) */}
                     <LangToggle />
 
-                    {/* Mobile Hamburger Button */}
                     <button
                         onClick={() => setIsOpen(v => !v)}
                         aria-expanded={isOpen}
@@ -188,10 +184,8 @@ function NavBar() {
                     >
                         <svg className={`w-6 h-6 transition-transform ${isOpen ? "rotate-90" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             {isOpen ? (
-                                // Icône "X" minimaliste pour la fermeture
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             ) : (
-                                // Icône Hamburger pour l'ouverture
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                             )}
                         </svg>
@@ -199,7 +193,6 @@ function NavBar() {
                 </div>
             </div>
 
-            {/* --- Mobile Menu Content --- */}
             <div
                 id="mobile-menu"
                 ref={menuRef}
@@ -207,24 +200,10 @@ function NavBar() {
                             ${isOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 pointer-events-none invisible"}`}
                 aria-hidden={!isOpen}
             >
-                <div className="rounded-xl bg-white dark:bg-brand-950 border border-gray-200 dark:border-brand-900 shadow-xl overflow-hidden">
+                <div className="rounded-xl bg-white border border-gray-200 dark:border-brand-900 shadow-xl overflow-hidden">
                     
-                    {/* Header du Menu Mobile (Contient seulement le bouton Fermer X) */}
-                    <div className="px-4 py-3 flex items-center justify-end border-b border-gray-100 dark:border-brand-900/50">
-                        
-                        {/* Bouton de Fermeture "X" du menu (Pour l'accessibilité ou si l'utilisateur manque le bouton en haut) */}
-                        <button 
-                            onClick={() => setIsOpen(false)} 
-                            aria-label="Close menu" 
-                            className="p-2 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 dark:text-white"
-                        >
-                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
+                    
 
-                    {/* Navigation Links */}
                     <nav className="p-2 space-y-1" aria-label="Mobile">
                         {links.map((l, i) => (
                             <MobileNavItem
@@ -238,7 +217,6 @@ function NavBar() {
                         ))}
                     </nav>
 
-                    {/* L'ancienne section CTA (Download CV) a été retirée. */}
                     
                 </div>
             </div>
