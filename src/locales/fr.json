@@ -10,7 +10,7 @@
     "title": "Hiba Oqba",
     "subtitle": "Ingénieure Logiciel",
     "cv": "Voir mon CV",
-    "cv-file": "assets/cv_HibaOqba_latfr.pdf"
+    "cv-file": "assets/cv_ats_fr.pdf"
   },
   "about": {
     "title": "À propos",
@@ -196,7 +196,7 @@
   "location": "Paris, France",
   "subject": "Contact via portfolio – {{name}}",
   "links": {
-    "linkedin": "https://www.linkedin.com/in/hiba-oqba-486a0221a/",
+    "linkedin": "https://www.linkedin.com/in/hiba-oqba/",
     "github": "https://github.com/hibaoqba",
     "gitlab": "https://gitlab.com/hibaoqba"
   },

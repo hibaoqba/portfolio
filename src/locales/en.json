@@ -10,7 +10,7 @@
     "title": "Hiba Oqba",
     "subtitle": "Software Engineer",
     "cv": "View my CV",
-    "cv-file":"assets/cv_HibaOqba_lateng.pdf"
+    "cv-file":"assets/cv_ats_eng.pdf"
   },
   "about": {
     "title": "About me",
@@ -199,7 +199,7 @@
   "location": "Paris, France",
   "subject": "Portfolio contact – {{name}}",
   "links": {
-    "linkedin": "https://www.linkedin.com/in/hiba-oqba-486a0221a/",
+    "linkedin": "https://www.linkedin.com/in/hiba-oqba/",
     "github": "https://github.com/hibaoqba",
     "gitlab": "https://gitlab.com/hibaoqba"
   },
