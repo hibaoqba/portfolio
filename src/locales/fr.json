@@ -214,6 +214,89 @@
 },
 
   "projectDetails": {
+    "fleetApp": {
+  "title": "Système de Gestion de Parc Automobile",
+  "subtitle": "Application backend Spring Boot pour la gestion d’un parc automobile, l’automatisation des affectations et le suivi des dépenses en temps réel.",
+  "overview": {
+    "title": "Aperçu du Projet",
+    "text": "Le Système de Gestion de Parc Automobile est une solution backend développée pour aider les entreprises à optimiser l’utilisation de leurs véhicules, automatiser les affectations de conducteurs et obtenir une visibilité en temps réel sur les dépenses. Développée avec Spring Boot et MySQL, l’application centralise la planification des voyages, le suivi de la consommation et les coûts de maintenance afin d’améliorer la performance opérationnelle."
+  },
+  "context": {
+    "title": "Contexte & Motivation",
+    "text": "Le parc automobile constitue souvent un poste de dépense important pour les entreprises, avec une logistique complexe impliquant véhicules, chauffeurs et carburant. La gestion manuelle rend difficile la visibilité sur la disponibilité, la planification ou le contrôle des coûts. Ce projet vise à automatiser ces processus et à offrir des rapports analytiques précis pour soutenir la prise de décision."
+  },
+  "objectives": {
+    "title": "Objectifs",
+    "items": [
+      "Planifier et enregistrer les voyages professionnels.",
+      "Automatiser les affectations des véhicules et des conducteurs selon leur disponibilité et leurs compétences.",
+      "Suivre et rationaliser les dépenses liées au carburant et à la maintenance.",
+      "Générer des rapports de consommation et détecter les anomalies.",
+      "Fournir une visibilité complète sur l’activité du parc automobile via des tableaux de bord analytiques."
+    ]
+  },
+  "architecture": {
+    "title": "Architecture du Système",
+    "text": "L’application repose sur une architecture en couches composée de contrôleurs, services et dépôts. Le backend expose des API REST pour la planification des voyages, les affectations et le suivi des dépenses. Spring Boot orchestre la logique métier, tandis que MySQL assure la persistance des données. Des tâches planifiées automatisent la génération des rapports.",
+    "diagram": "/assets/fleet_architecture_dark.png"
+  },
+  "technologies": {
+    "frontend": {
+      "title": "Outils & Frameworks",
+      "items": [
+        "Spring Boot ",
+        "Spring Data JPA & Hibernate",
+        "Spring Scheduler pour les tâches automatiques",
+        "Conception d’API RESTful",
+        "Base de données MySQL",
+        "JUnit & Mockito pour les tests"
+      ]
+    },
+    "backend": {
+      "title": "Outils Complémentaires",
+      "items": [
+        
+        "Postman pour les tests d’API REST",
+        "SonarQube & JaCoCo pour la qualité du code",
+        "JMeter pour les tests de performance"
+      ]
+    }
+  },
+  "modules": {
+    "title": "Modules Principaux",
+    "items": [
+      "Module Véhicule – gestion des véhicules, informations techniques, assurance et disponibilité.",
+      "Module Conducteur – gestion des profils, compétences, licences et plannings des conducteurs.",
+      "Module Voyage – planification des trajets avec dates, itinéraires et affectations automatiques.",
+      "Moteur d’Affectation – algorithme d’affectation automatique des véhicules et conducteurs.",
+      "Module Carburant – suivi des consommations, coûts et anomalies par véhicule et conducteur.",
+      "Module Reporting – génération de rapports analytiques et de synthèses de consommation."
+    ]
+  },
+  "impact": {
+    "title": "Impact & Résultats",
+    "items": [
+      "Automatisation complète des affectations de conducteurs et véhicules.",
+      "Visibilité centralisée sur les voyages et l’état des véhicules.",
+      "Suivi en temps réel des dépenses de carburant et de maintenance.",
+      "Réduction des coûts et aide à la décision grâce aux rapports analytiques.",
+      "Architecture modulaire et performante basée sur Spring Boot."
+    ]
+  },
+  "devSetup": {
+    "title": "Configuration du Projet",
+    "text": "Le système fonctionne comme une application backend Spring Boot exposant des API REST pour la gestion du parc automobile.",
+    "items": [
+      "Backend : mvn clean install → mvn spring-boot:run",
+      "Base de données : MySQL avec génération automatique du schéma (JPA/Hibernate)",
+      "Tests API : Postman ou Swagger UI",
+      "Qualité du code : mvn sonar:sonar (SonarQube)",
+      "Tests de charge : scénarios JMeter sur les endpoints REST"
+    ]
+  }
+}
+
+    ,
   "expenseTracker": {
     "title": "Budgify – Suivi des Dépenses",
     "subtitle": "Plateforme full-stack moderne de gestion budgétaire permettant aux utilisateurs de visualiser et de contrôler leurs habitudes de dépenses via des tableaux de bord interactifs.",
@@ -445,7 +528,7 @@
     "backend": {
       "title": "Backend",
       "items": [
-        "Spring Boot (Java 17)",
+        "Spring Boot ",
         "Spring Security avec JWT",
         "JPA/Hibernate ORM avec MySQL",
         "SonarQube pour la qualité et l’analyse statique du code",

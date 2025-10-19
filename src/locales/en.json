@@ -295,6 +295,89 @@
       ]
     }
   },
+  "fleetApp": {
+  "title": "Fleet Management System",
+  "subtitle": "Spring Boot backend application for managing a vehicle fleet, automating assignments and monitoring operational expenses.",
+  "overview": {
+    "title": "Project Overview",
+    "text": "The Fleet Management System is a backend solution designed to help companies optimize their vehicle usage, automate driver and vehicle assignments, and gain real-time visibility into expenses. Built with Spring Boot and MySQL, it centralizes fleet data, trip scheduling, consumption tracking, and maintenance costs for improved operational efficiency."
+  },
+  "context": {
+    "title": "Context & Motivation",
+    "text": "Fleet operations often represent a significant cost for organizations, with complex logistics involving vehicles, drivers, and fuel management. Manual tracking methods make it difficult to maintain accurate availability, optimize routes, or control expenses. This project aims to automate these processes and provide detailed insights through data-driven reports."
+  },
+  "objectives": {
+    "title": "Objectives",
+    "items": [
+      "Plan and record business trips.",
+      "Automatically assign vehicles and drivers based on availability and required skills.",
+      "Monitor and rationalize expenses related to fuel and maintenance.",
+      "Generate consumption reports and detect abnormal fuel usage.",
+      "Offer visibility over vehicle and driver activity through detailed analytics."
+    ]
+  },
+  "architecture": {
+    "title": "System Architecture",
+    "text": "The application follows a layered architecture composed of Controllers, Services, and Repositories. The backend exposes REST APIs for trip planning, assignments, and expense tracking. Spring Boot ensures business logic orchestration, while MySQL manages data persistence. Scheduled jobs handle automated report generation.",
+    "diagram": "/assets/fleet_architecture_dark.png"
+  },
+  "technologies": {
+    "frontend": {
+      "title": "Tools & Frameworks",
+      "items": [
+        "Spring Boot ",
+        "Spring Data JPA & Hibernate",
+        "Spring Scheduler for automation tasks",
+        "RESTful API design",
+        "MySQL Database",
+        "JUnit & Mockito for testing"
+      ]
+    },
+    "backend": {
+      "title": "Additional Tools",
+      "items": [
+       
+        "Postman for testing REST endpoints",
+        "SonarQube & JaCoCo for code quality analysis",
+        "JMeter for performance testing"
+      ]
+    }
+  },
+  "modules": {
+    "title": "Core Modules",
+    "items": [
+      "Vehicle Module – manages vehicles, technical info, insurance, and availability.",
+      "Driver Module – manages driver profiles, skills, licenses, and work schedules.",
+      "Trip Module – plans trips with start/end dates, routes, and automatic assignments.",
+      "Assignment Engine – matches vehicles and drivers automatically based on constraints.",
+      "Fuel Module – tracks consumption, costs, and anomalies per vehicle and driver.",
+      "Reporting Module – generates analytics and consumption summaries."
+    ]
+  },
+  "impact": {
+    "title": "Impact & Results",
+    "items": [
+      "Complete automation of driver and vehicle assignments.",
+      "Centralized visibility of all trips and vehicle states.",
+      "Real-time monitoring of fuel and maintenance expenses.",
+      "Improved cost efficiency and better decision-making through reports.",
+      "Enhanced reliability and scalability through modular Spring Boot design."
+    ]
+  },
+  "devSetup": {
+    "title": "Development Setup",
+    "text": "The system runs as a Spring Boot backend exposing REST APIs for fleet management.",
+    "items": [
+      "Backend: mvn clean install → mvn spring-boot:run",
+      "Database: MySQL with automatic schema generation (JPA/Hibernate)",
+      "API testing: Postman or Swagger UI",
+      "Code quality: mvn sonar:sonar (SonarQube)",
+      "Load testing: JMeter scripts on REST endpoints"
+    ]
+  }
+}
+
+  ,
   "loiCadre": {
     "title": "Budget Law Management System",
     "subtitle": "Full-stack web platform developed for the Ministry of Economy and Finance to digitalize the management of framework laws and workforce allocations across public institutions.",
@@ -425,7 +508,7 @@
     "backend": {
       "title": "Backend",
       "items": [
-        "Spring Boot (Java 17)",
+        "Spring Boot ",
         "Spring Security with JWT",
         "JPA/Hibernate ORM with MySQL",
         "SonarQube for code quality and static analysis",

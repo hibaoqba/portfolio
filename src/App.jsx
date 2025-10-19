@@ -11,10 +11,8 @@ import LoiCadrePage from './pages/LoiCadrePage';
 import ExpenseTrackerPage from './pages/ExpenseTrackerPage';
 import BookingAppPage from './pages/BookingAppPage';
 import FleetAppPage from './pages/FleetAppPage';
+import ScrollToTop from './components/ScrollToTop'; //
 
-// ---------------------
-// Handles language setup
-// ---------------------
 function RoutedHome() {
   const { lng } = useParams();
   const { i18n } = useTranslation();
@@ -31,6 +29,7 @@ function RoutedHome() {
   if (!lang) return <Navigate to="/fr" replace />;
 
   return (
+    
     <Routes>
       <Route index element={<Home />} />
       <Route path="projects/loi-cadre" element={<LoiCadrePage />} />
@@ -42,13 +41,12 @@ function RoutedHome() {
   );
 }
 
-// ---------------------
-// App entry
-// ---------------------
+
 export default function App() {
   return (
     <div className="font-sans">
       <NavBar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/fr" replace />} />
         <Route path="/:lng/*" element={<RoutedHome />} />

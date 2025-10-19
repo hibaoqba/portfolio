@@ -215,35 +215,7 @@ export default function ExpenseTrackerPage() {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-10">
-          {["api", "devSetup"].map((section, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ y: -3 }}
-              className="rounded-2xl p-8 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-sm"
-            >
-              <h3 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-                {t(`projectDetails.expenseTracker.${section}.title`)}
-              </h3>
-              {t(`projectDetails.expenseTracker.${section}.text`) && (
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  {t(`projectDetails.expenseTracker.${section}.text`)}
-                </p>
-              )}
-              <ul className="space-y-3 text-gray-700 dark:text-gray-300 text-base">
-                {t(`projectDetails.expenseTracker.${section}.items`, {
-                  returnObjects: true,
-                }).map((f, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="mt-1.5 w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500 flex-shrink-0"></span>
-                    <p>{f}</p>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-
+     
         {/* IMPACT */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
