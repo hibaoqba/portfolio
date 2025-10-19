@@ -4,7 +4,9 @@ import { FiExternalLink } from "react-icons/fi";
 import { motion } from "framer-motion";
 
 function Projects() {
-  const { t } = useTranslation();
+
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language || "fr";
 
   const projectData = [
     {
@@ -45,7 +47,7 @@ function Projects() {
         >
           <HashLink
             smooth
-            to={`/#${proj.id}`}
+            to={`/${lang}/projects/${proj.id}`}
             aria-label={proj.title}
             className="group block rounded-2xl h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-fuchsia-400/70"
           >

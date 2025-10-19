@@ -1,4 +1,3 @@
-// src/components/HeroPattern.jsx
 import React from "react";
 
 export default function HeroPattern({ variant = "tri-classic" }) {

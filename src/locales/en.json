@@ -193,9 +193,299 @@
   }
 }
 ,
+
+  "projectDetails": {
+  "expenseTracker": {
+    "title": "Budgify – Expense Tracker",
+    "subtitle": "A modern full-stack budgeting platform that helps users visualize and control their spending habits through interactive dashboards and analytics.",
+    "overview": {
+      "title": "Case Study Overview",
+      "text": "Budgify was designed as a personal finance management tool to help individuals understand where their money goes each month. The system provides a secure authentication flow, detailed expense categorization, monthly budget limits, and dynamic visual reports powered by .NET 8 and Angular 18."
+    },
+    "context": {
+      "title": "Context & Problem",
+      "text": "Many users rely on spreadsheets or notes to track expenses, which quickly becomes inefficient as data grows. Budgify aims to replace this manual tracking with an automated, visual, and cross-platform solution that helps users stay within budget and analyze their financial behavior in real time."
+    },
+    "objectives": {
+      "title": "Goals",
+      "items": [
+        "Offer a secure and user-friendly interface for expense tracking.",
+        "Allow users to set and monitor monthly budgets.",
+        "Provide data visualization with charts and indicators.",
+        "Enable detailed insights through filtering and categorization.",
+        "Design a scalable full-stack architecture using modern technologies."
+      ]
+    },
+    "architecture": {
+      "title": "Architecture Overview",
+      "text": "The application follows a client–server model with a RESTful API backend and a reactive Angular frontend. Data persistence is handled with Entity Framework Core and SQLite for easy setup, while JWT secures all communications.",
+      "diagram": "/assets/expense_architecture.png"
+    },
+    "technologies": {
+      "title": "Technologies Used",
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "Angular 18 (TypeScript)",
+          "Angular Material & Tailwind CSS",
+          "Ngx-Charts, Chart.js, and D3.js",
+          "JWT Authentication and guards",
+          "Responsive PWA design"
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": [
+          ".NET 8 Web API with C#",
+          "Entity Framework Core 9 and SQLite",
+          "JWT-based Authentication and Role-based Authorization",
+          "Automated unit tests with xUnit",
+          "Swagger for documentation and testing"
+        ]
+      }
+    },
+    "frontendFeatures": {
+      "title": "Key Frontend Features",
+      "items": [
+        "Interactive dashboard with expense overview and trends.",
+        "Category-based graphs with filtering (last 7/30 days).",
+        "Progress bars for each monthly budget.",
+        "Dark/light mode with persistent user preferences.",
+        "Real-time updates after every transaction."
+      ]
+    },
+    "backendFeatures": {
+      "title": "Key Backend Features",
+      "items": [
+        "REST API for expenses, budgets, and authentication.",
+        "CRUD endpoints secured with JWT.",
+        "Automatic monthly aggregation using LINQ queries.",
+        "Seed data and migration management via EF Core.",
+        "Comprehensive Swagger documentation and Postman collection."
+      ]
+    },
+    "api": {
+      "title": "Representative API Endpoints",
+      "items": [
+        "POST /api/auth/register – create account",
+        "POST /api/auth/login – authenticate user",
+        "GET /api/expense/monthly-summary – monthly totals",
+        "POST /api/expense – record expense",
+        "GET /api/budget – retrieve user budgets"
+      ]
+    },
+    "impact": {
+      "title": "Impact & Learnings",
+      "items": [
+        "Built a maintainable modular architecture with clear separation of concerns.",
+        "Improved database performance by optimizing EF Core queries.",
+        "Enhanced UX using chart animations and responsive layouts.",
+        "Strengthened understanding of JWT and full-stack integration.",
+        "Deployed successfully on local and cloud environments."
+      ]
+    },
+    "devSetup": {
+      "title": "Development Setup",
+      "text": "Budgify consists of two separate modules communicating via REST APIs.",
+      "items": [
+        "Frontend: `npm install` → `ng serve`",
+        "Backend: `dotnet restore` → `dotnet run`",
+        "API testing: Swagger UI",
+        "Database: auto-migration with EF Core on startup"
+      ]
+    }
+  },
+  "loiCadre": {
+    "title": "Budget Law Management System",
+    "subtitle": "Full-stack web platform developed for the Ministry of Economy and Finance to digitalize the management of framework laws and workforce allocations across public institutions.",
+    "overview": {
+      "title": "Project Overview",
+      "text": "The Budget Law Management System was designed and implemented within the Ministry of Economy and Finance in Rabat to digitize the complete process of managing framework laws (lois cadres) for public institutions. The platform allows HR units, sectoral managers, and central administrators to collaborate on defining, validating, and tracking budgetary posts and versions with complete traceability and automation."
+    },
+    "context": {
+      "title": "Context & Problem",
+      "text": "Before this project, the management of framework laws was performed manually using Excel files and email exchanges. This approach led to redundancy, data inconsistencies, and lack of version control. The need for a secure, centralized, and automated platform was crucial to ensure reliable collaboration between all stakeholders and to strengthen accountability across institutions."
+    },
+    "objectives": {
+      "title": "Objectives",
+      "items": [
+        "Digitize the entire lifecycle of framework laws — creation, validation, and versioning.",
+        "Provide role-based access for HR, Sectoral Managers, and Central Administration.",
+        "Automate Excel table generation for reporting and regulatory purposes.",
+        "Ensure data security, traceability, and compliance with ministry standards.",
+        "Offer a modern, responsive, and user-friendly interface with Angular and Tailwind CSS."
+      ]
+    },
+    "architecture": {
+      "title": "System Architecture",
+      "text": "The system follows a layered client–server architecture built on REST APIs. The frontend Angular application communicates with a .NET 9 Web API backend that handles business logic, data persistence, and Excel report generation. Entity Framework Core ensures ORM management and database migrations with SQL Server, while JWT authentication secures the communication flow between roles.",
+      "diagram": "/assets/loicadre_architecture_dark.png"
+    },
+    "technologies": {
+      "title": "Technologies Used",
+      "frontend": {
+        "title": "Frontend",
+        "items": [
+          "Angular 18 (TypeScript)",
+          "Tailwind CSS and Angular Material",
+          "Role-based routing and guards",
+          "Responsive design and reusable components"
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "items": [
+          ".NET 9 Web API (C#)",
+          "Entity Framework Core and SQL Server",
+          "JWT Authentication and Authorization",
+          "NUnit automated unit tests (>85% coverage)",
+          "Excel export module for reports",
+          "Swagger for API documentation"
+        ]
+      }
+    },
+    "modules": {
+      "title": "Core Modules",
+      "items": [
+        "HR Module – managing services, posts, and public institutions.",
+        "Sectoral Manager Module – validation and submission of framework versions.",
+        "Budget Module – generation of regulatory Excel reports automatically.",
+        "Authentication Module – role management and secure access.",
+        "Administration Module – user management, logs, and audit trail."
+      ]
+    },
+    "security": {
+      "title": "Security & Methodology",
+      "items": [
+        "JWT-based authentication with role-based access control.",
+        "MVC architecture and repository pattern for clean separation of concerns.",
+        "Comprehensive testing with NUnit and EF Core InMemory providers.",
+        "Agile Scrum methodology with Jira for sprint management.",
+        "Continuous integration and code review on GitHub."
+      ]
+    },
+    "impact": {
+      "title": "Impact & Results",
+      "items": [
+        "Full digitalization of framework law management processes.",
+        "Enhanced traceability and data consistency across all institutions.",
+        "80% reduction in manual errors and reporting time.",
+        "Improved collaboration between HR and sectoral units.",
+        "Adoption by multiple budgetary directorates within the ministry."
+      ]
+    },
+    "devSetup": {
+      "title": "Development Setup",
+      "text": "The project is divided into two independent modules: a .NET backend and an Angular frontend communicating via REST APIs.",
+      "items": [
+        "Frontend: npm install → ng serve",
+        "Backend: dotnet restore → dotnet run",
+        "Testing: dotnet test (NUnit)",
+        "API testing: Swagger or Postman"
+      ]
+    }
+  },
+  "bookingApp": {
+  "title": " Reservation System",
+  "subtitle": "A full-stack platform for managing reservations of hotels, apartments, and cars, developed with React and Spring Boot.",
+  "overview": {
+    "title": "Project Overview",
+    "text": "A reservation management platform designed during my internship at Metama Agency. It enables users to browse, book, and manage reservations for hotels, apartments, and cars. The application combines a responsive React frontend with a Spring Boot backend that handles authentication, business logic, and data persistence in MySQL."
+  },
+  "context": {
+    "title": "Context & Problem",
+    "text": "Managing reservations for different service types requires real-time availability tracking, user authentication, and consistency between bookings. The goal was to create a unified and secure platform that centralizes all reservation operations, ensures data integrity, and offers an intuitive user experience."
+  },
+  "objectives": {
+    "title": "Objectives",
+    "items": [
+      "Develop a responsive web interface for users and administrators.",
+      "Implement authentication and authorization using JWT and Spring Security.",
+      "Provide real-time availability tracking and CRUD operations for bookings.",
+      "Ensure backend reliability with unit and integration tests.",
+      "Apply QA tools (SonarQube, JaCoCo, JMeter) for continuous quality control."
+    ]
+  },
+  "architecture": {
+    "title": "System Architecture",
+    "text": "The app follows a layered architecture built on REST APIs. The React frontend communicates with a Spring Boot backend that manages business logic, authentication, and persistence using MySQL via JPA/Hibernate. The backend integrates quality assurance and testing tools such as SonarQube, JaCoCo, and JMeter.",
+    "diagram": "/assets/bookify_architecture_dark.png"
+  },
+  "technologies": {
+    "frontend": {
+      "title": "Frontend",
+      "items": [
+        "React with JavaScript (Hooks & Components)",
+        "Bootstrap 5 and CSS Modules",
+        "Axios for API communication",
+        "JWT handling for authentication",
+        "Responsive design with reusable UI components"
+      ]
+    },
+    "backend": {
+      "title": "Backend",
+      "items": [
+        "Spring Boot (Java 17)",
+        "Spring Security with JWT",
+        "JPA/Hibernate ORM with MySQL",
+        "SonarQube for code quality and static analysis",
+        "JaCoCo for test coverage reporting",
+        "JMeter for performance and load testing",
+        "JUnit & Selenium for automated testing"
+      ]
+    }
+  },
+  "modules": {
+    "title": "Core Modules",
+    "items": [
+      "User Module – account creation, login, and JWT authentication.",
+      "Booking Module – create, update, and cancel reservations.",
+      "Property Module – manage hotels, apartments, and vehicles with availability status.",
+      "Admin Module – dashboard for statistics and resource management.",
+      "Payment Module – simulation of reservation confirmations and status updates."
+    ]
+  },
+  "security": {
+    "title": "Security & Testing",
+    "items": [
+      "JWT-based authentication and role-based access control.",
+      "Spring Security filters for all protected endpoints.",
+      "Integration testing with JUnit and Mockito.",
+      "UI testing and booking scenario validation with Selenium.",
+      "Code quality metrics analyzed via SonarQube.",
+      "Coverage reports generated automatically with JaCoCo.",
+      "Load and stress tests executed through JMeter."
+    ]
+  },
+  "impact": {
+    "title": "Impact & Results",
+    "items": [
+      "Unified reservation management system for multiple service types.",
+      "Improved consistency and reduced booking conflicts.",
+      "Optimized API performance and response times.",
+      "High code coverage and improved maintainability through QA tools.",
+      "Practical experience in full-stack development using Java and React."
+    ]
+  },
+  "devSetup": {
+    "title": "Development Setup",
+    "text": "The system includes two modules: a React frontend and a Spring Boot backend connected through REST APIs.",
+    "items": [
+      "Frontend: npm install → npm start",
+      "Backend: mvn clean install → mvn spring-boot:run",
+      "Testing: mvn test (JUnit, JaCoCo, Selenium)",
+      "API Testing: Postman or Swagger UI",
+      "Code Analysis: mvn sonar:sonar (SonarQube)"
+    ]
+  }
+}
+
+}
+,
+
 "contact": {
   "title": "Contact",
-  "emailTo": "oqbahiba@gmail.com",
+  "emailTo": "hiba.oqba@outlook.com",
   "location": "Paris, France",
   "subject": "Portfolio contact – {{name}}",
   "links": {
