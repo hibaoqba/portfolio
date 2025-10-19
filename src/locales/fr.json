@@ -505,7 +505,7 @@
       "Développer une interface web responsive pour les utilisateurs et les administrateurs.",
       "Mettre en place l’authentification et l’autorisation via JWT et Spring Security.",
       "Assurer un suivi en temps réel des disponibilités et des opérations CRUD.",
-      "Garantir la fiabilité du backend par des tests unitaires et d’intégration.",
+      "Garantir la fiabilité du backend par des tests unitaires.",
       "Mettre en œuvre des outils de qualité (SonarQube, JaCoCo, JMeter) pour le contrôle continu."
     ]
   },
@@ -553,7 +553,7 @@
     "items": [
       "Authentification JWT et gestion des rôles.",
       "Filtres Spring Security sur toutes les routes protégées.",
-      "Tests d’intégration avec JUnit et Mockito.",
+      "Tests unitaires avec JUnit et Mockito.",
       "Tests d’interface et scénarios de réservation avec Selenium.",
       "Analyse de la qualité du code via SonarQube.",
       "Rapports de couverture automatisés avec JaCoCo.",

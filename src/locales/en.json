@@ -485,7 +485,7 @@
       "Develop a responsive web interface for users and administrators.",
       "Implement authentication and authorization using JWT and Spring Security.",
       "Provide real-time availability tracking and CRUD operations for bookings.",
-      "Ensure backend reliability with unit and integration tests.",
+      "Ensure backend reliability with unit tests.",
       "Apply QA tools (SonarQube, JaCoCo, JMeter) for continuous quality control."
     ]
   },
@@ -533,7 +533,7 @@
     "items": [
       "JWT-based authentication and role-based access control.",
       "Spring Security filters for all protected endpoints.",
-      "Integration testing with JUnit and Mockito.",
+      "Unit testing with JUnit and Mockito.",
       "UI testing and booking scenario validation with Selenium.",
       "Code quality metrics analyzed via SonarQube.",
       "Coverage reports generated automatically with JaCoCo.",
